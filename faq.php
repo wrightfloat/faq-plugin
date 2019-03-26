@@ -34,11 +34,9 @@ if(! defined( 'DLWFAQ_PLUGIN_DIR_URL' ) ){
 
 //sets up the faq plugin. 
 function dlwfq_plugin_setup(){
-    
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_core_function.php');
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_custom_actions.php'); //contains all of the custom actions an filters that we need access too. 
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/class_dlwfq.php');
     new dlwfq_setup( dlwfq_get_the_slug(true) );
-    
 }
 add_action('plugins_loaded', 'dlwfq_plugin_setup');
