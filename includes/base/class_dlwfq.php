@@ -12,7 +12,6 @@ class dlwfq_setup{
 
     public $plugin_version = 0.1;
     public $plugin_prefix = 'dlw_frequently_asked_questions'; //the prefix of the plugin
-    
     public $custom_post_type = 'dlw_wp_faq'; //the custom post type 
     public $custom_post_type_slug;
     
@@ -22,8 +21,8 @@ class dlwfq_setup{
         $this->custom_post_type_slug = $slug; 
 
         $this->set_up_custom_posttype();
-        require_once 'dlwfq_settings_pages.php'; //setting up our custom settings pages. 
-        //add_filter('archive_template', array($this, 'template_post_type_redirect') );
+        require_once 'dlwfq_settings_pages.php';  
+        
         add_filter( 'archive_template', array($this, 'dlwfq_faq_archive_template' ) );
         
     }
@@ -48,9 +47,8 @@ class dlwfq_setup{
     public function dlwfq_faq_archive_template( $archive_template ) {
         global $post;
 
+        // TODO: get the template name via the settings menu. 
         $archive_template_name = 'archive-faqs.php';
-
-         
         if ( is_post_type_archive ( 'dlw_wp_faq' ) ) {
 
             //TODO: add in a way users can adjust the styling of the faqs. 
@@ -78,7 +76,6 @@ class dlwfq_setup{
                             'media-type' => 'all',
                         )
                     );
-
                     //requesting the stylesheet.
                     do_action('dlwfq_enqueue_frontend_style', 'faq-archive-style');
                     
@@ -91,12 +88,8 @@ class dlwfq_setup{
                         'version' => 0.1, 
                         'footer' => true,
                     ));
-
                     do_action('dlwfq_enqueue_frontend_script', 'faq-archive-script');
-                    
-
                 }
-
                 add_action('wp_enqueue_scripts', 'dlwfq_setup_custom_archive_style_sheet');
             }
 
