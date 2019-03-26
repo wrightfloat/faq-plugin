@@ -22,15 +22,18 @@ if (! defined( 'DLWFAQ_PLUGIN_DIR' ) ) {
 	define( 'DLWFAQ_PLUGIN_DIR', __DIR__ );
 }
 
-//
-if (! defined( 'DLWFAQ_PLUGIN_CSS_ASSETS_URL' ) ){
-    define( 'DLWFAQ_PLUGIN_CSS_ASSETS_URL', plugins_url() . '/faq/assets/css/' );
-}
-
-
 if(! defined( 'DLWFAQ_PLUGIN_DIR_URL' ) ){
     define( 'DLWFAQ_PLUGIN_DIR_URL', plugins_url() );
 }
+
+if(! defined( 'DLWFAQ_PLUGIN_NAME' ) ){
+    define( 'DLWFAQ_PLUGIN_NAME', 'Faqizer' );
+}
+
+if (! defined( 'DLWFAQ_PLUGIN_CSS_ASSETS_URL' ) ){
+    define( 'DLWFAQ_PLUGIN_CSS_ASSETS_URL', plugins_url() . '/' . DLWFAQ_PLUGIN_NAME . '/assets/css/' );
+}
+
 
 //sets up the faq plugin. 
 function dlwfq_plugin_setup(){

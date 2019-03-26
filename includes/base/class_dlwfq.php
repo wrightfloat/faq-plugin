@@ -49,6 +49,7 @@ class dlwfq_setup{
 
         // TODO: get the template name via the settings menu. 
         $archive_template_name = 'archive-faqs.php';
+
         if ( is_post_type_archive ( 'dlw_wp_faq' ) ) {
 
             //TODO: add in a way users can adjust the styling of the faqs. 
@@ -70,25 +71,26 @@ class dlwfq_setup{
                     do_action('dlwfq_register_frontend_style', 
                         array( 
                             'handle' => 'faq-archive-style',
-                            'src' => plugins_url() . '/faq/' . 'assets/css/faq-archive.css',
+                            'src' => plugins_url() . '/' . DLWFAQ_PLUGIN_NAME . '/assets/css/faq-archive.css',
                             'customA' => array(),
                             'version' => 0.1, 
                             'media-type' => 'all',
                         )
                     );
                     //requesting the stylesheet.
-                    do_action('dlwfq_enqueue_frontend_style', 'faq-archive-style');
+                    do_action('dlwfq_enqueue_frontend_style', 'faq-archive-style'); //second arg is the handle
                     
                     //load in the script that we want too use for the site.
 
                     do_action('dlwfq_register_frontend_script', array( 
                         'handle' => 'faq-archive-script',
-                        'src' => plugins_url() . '/faq/' . 'assets/js/dlwfq-faq-accordian.js',
+                        'src' => plugins_url() . '/' . DLWFAQ_PLUGIN_NAME . '/assets/js/dlwfq-faq-accordian.js',
                         'customA' => array(),
                         'version' => 0.1, 
                         'footer' => true,
                     ));
-                    do_action('dlwfq_enqueue_frontend_script', 'faq-archive-script');
+
+                    do_action('dlwfq_enqueue_frontend_script', 'faq-archive-script'); //second arg is the handle
                 }
                 add_action('wp_enqueue_scripts', 'dlwfq_setup_custom_archive_style_sheet');
             }
