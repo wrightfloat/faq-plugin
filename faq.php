@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Simple Faq
+Plugin Name: Faqizer
 Plugin URI: http://wrightfloat.com
 Description: A plugin to easily add Frequently asked questions to your website. 
 Author: Daniel Wright
@@ -37,11 +37,7 @@ function dlwfq_plugin_setup(){
     
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_core_function.php');
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_custom_actions.php'); //contains all of the custom actions an filters that we need access too. 
-    
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/class_dlwfq.php');
-
-    // var_dump(dlwfq_get_the_slug(false));
-    
     new dlwfq_setup( dlwfq_get_the_slug(true) );
     
 }
