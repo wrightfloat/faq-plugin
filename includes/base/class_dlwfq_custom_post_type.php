@@ -1,0 +1,166 @@
+<?php
+/**
+ * Simplefaqs setup custom posttype setup class
+ *
+ * @package Simplefaqs
+ * @since   0.1.0
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+
+
+class dlwfq_custom_post_type {
+    
+    private $plugin_prefix;
+    private $single_page_faq_slug; 
+    private $single;
+    private $plural;
+    public $custom_post_type_slug;
+    private $custom_title; 
+    public $test_a; 
+
+    public function __construct($plugin_prefix, $custom_post_type_slug, $custom_post_type) {
+        // Set post type name
+        $this->plugin_prefix = $plugin_prefix;
+        $this->custom_post_type_slug = $custom_post_type_slug;
+        $this->custom_post_type = $custom_post_type;
+
+        $this->init(); 
+    }
+
+    private function init(){
+        
+        add_action('init', array($this, 'dlw_wp_faq_create_posttype' ) );
+
+        //updates the title placeholder on custom post type
+        add_filter( 'enter_title_here', array( $this, 'change_enter_title_here_text' ) );
+    }
+
+
+    protected function updateCase($string, $updateCase, $addSpace = false){
+
+
+        //make sure that this is not empty.
+        if( isset($string) ){
+            if($updateCase !== false){
+    
+                switch ($updateCase) {
+                    case 'lcfirst':
+                        $string = lcfirst($string); // converts the first character of a string to lowercase.
+                        break;
+    
+                    case 'ucfirst':
+                        $string = ucfirst($string); // converts the first character of a string to uppercase.
+                        break;
+                    
+                }
+    
+            }
+    
+            if($addSpace){
+                $string = str_repeat('&nbsp;', 1) . $string . str_repeat('&nbsp;', 1);
+            }
+            
+            else{
+                $string = $string;
+            }
+        }
+    
+        return $string; 
+    
+    }
+
+    /**
+     * Add in custom post type labels
+     * https://codex.wordpress.org/Function_Reference/register_post_type#Parameters
+     *
+     * @param string $plural a plural label for the custom posttype.
+     * @param string $single a single label for the custom posttype.
+     * @param string $custom_title Used as the place holder for the title of wordpress
+     * @return void
+     */
+
+    public function setupLabels($plural, $single, $custom_title = false){
+        $this->plural = $plural;
+        $this->single = $single;
+        $this->custom_title = $custom_title; 
+
+        $labels = array(
+            'name'                      => _x( $this->updateCase($single, 'Ucfirst') , 'post type general name', $this->plugin_prefix ), //single name
+            'singular_name'             => _x( $this->updateCase($single, 'Ucfirst') , 'post type singular name', $this->plugin_prefix ),
+            'menu_name'                 => _x( $this->updateCase($plural, 'Ucfirst') , 'admin menu', $this->plugin_prefix ),
+            'add_new'                   => _x( 'Add New' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ), //Add New -item // this is the text that is displayed on the add button on the edit.php page and replaces the add new text within the sidebar menu.
+            'add_new_item'              => __( 'Add New' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ), 
+            'new_item'                  => __( 'New' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ),
+            'edit_item'                 => __( 'Edit' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ),
+            'view_item'                 => __( 'View' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ),
+            'view_items'                => __( 'View' . $this->updateCase($plural, 'Ucfirst', true) , $this->plugin_prefix ),
+            'all_items'                 => __( 'All' . $this->updateCase($plural, 'Ucfirst', true) , $this->plugin_prefix ),
+            'search_items'              => __( 'Search'. $this->updateCase($plural, 'Ucfirst', true) , $this->plugin_prefix ),
+            'parent_item_colon'         => __( 'Parent' . $this->updateCase($plural, 'Ucfirst', true) . ':', $this->plugin_prefix ),
+            'not_found'                 => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found.', $this->plugin_prefix ),
+            'not_found_in_trash'        => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found in Trash.', $this->plugin_prefix ),
+            
+            'items_list_navigation'     => __( 'items_list_navigation' . $this->updateCase($plural, 'Ucfirst', true), $this->plugin_prefix ), //- String for the table pagination hidden heading.
+            'items_list'                => __( 'items_list' . $this->updateCase($plural, 'Ucfirst', true), $this->plugin_prefix ), //- String for the table hidden heading.
+            'name_admin_bar'            => _x( $this->updateCase($single, 'Ucfirst') , 'add new on admin bar', $this->plugin_prefix ),
+        );
+
+        return $this->labels = $labels;
+    }
+
+    /**
+     * function that actually creates the posttype. 
+     * https://codex.wordpress.org/Function_Reference/register_post_type
+     *
+     * @return void
+     */
+    
+    public function dlw_wp_faq_create_posttype() {
+        $labels = $this->labels;
+
+        register_post_type(  $this->custom_post_type,
+            array(
+                'labels' => $labels,
+                'description' => 'Enter a FAQ',
+                'public' => true,
+                'exclude_from_search' => false, //Whether to exclude posts with this post type from front end search results.
+                'publicly_queryable' => true, //Whether queries can be performed on the front end as part of parse_request.
+                'show_ui' => true, //Whether to generate a default UI for managing this post type in the admin
+                'show_in_nav_menus' => true, //Whether to generate a default UI for managing this post type in the admin
+                'show_in_menu' => true, //Where to show the post type in the admin menu. show_ui must be true.
+                'show_in_admin_bar' => true, //Whether to make this post type available in the WordPress admin bar.
+                'menu_position' => 26, //The position in the menu order the post type should appear. show_in_menu must be true.
+                'menu_icon' => 'dashicons-flag', 
+                'hierarchical' => false, //Whether the post type is hierarchical (e.g. page). Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page.
+                'supports' => array('title', 'editor', 'author'),   //title, editor, author, thumbnail, excerpt, trackbacks, custom-fields, comments, revisions, page-attributes, post-formats
+                'has_archive' => true, //Enables post type archives. Will use $post_type as archive slug by default.
+                'rewrite' => array('slug' => $this->custom_post_type_slug['slug'] ),// Triggers the handling of rewrites for this post type. To prevent rewrites, set to false.
+                'can_export' => true,  //allows users to export csv files
+                'delete_with_user' => false, //Whether to delete posts of this type when deleting a user. If true, posts of this type belonging to the user will be moved to trash when then user is deleted. If false, posts of this type belonging to the user will not be trashed or deleted. If not set (the default), posts are trashed if post_type_supports('author'). Otherwise posts are not trashed or deleted.
+                'show_in_rest' => false, //Whether to expose this post type in the REST API.
+            )
+        );
+       
+    }
+
+    
+    /**
+     * edits the placeholder on the new and edit screens for our post type. 
+     *
+     * @param string $title the placeholder for the post title on the edit screens
+     * @return void
+     */
+    public function change_enter_title_here_text( $title ){
+        $screen = get_current_screen();
+        if  ( $this->custom_post_type === $screen->post_type ) {
+            
+            $title = $this->updateCase($this->custom_title, 'Ucfirst'); 
+        }
+        return $title;   
+    }
+
+    // var_dump($this->custom_post_type_slug); 
+
+}

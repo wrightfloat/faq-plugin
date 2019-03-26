@@ -1,0 +1,62 @@
+.dlwfq-pull-right{
+  float: right;
+}
+
+ul.dlwfq-fq-list{
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+}
+
+ul.dlwfq-fq-list li{
+  list-style: none;
+  background: #ffffff;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  -webkit-transition: box-shadow 0.2s;
+  -moz-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  padding: 1.5rem 1rem;
+}
+  
+ul.dlwfq-fq-list li a{
+  text-decoration: none;
+  color: black; 
+}
+  
+li.dlwfq-faq-open {
+  background: #ffffff;
+  margin-bottom: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  -webkit-transition: box-shadow 0.2s;
+  -moz-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+}
+  
+.dlwfq-fq-content{
+    display: none;
+    padding: 0 24px 30px;
+}
+  
+  
+.dlwfq-fq-trigger {
+    font-size: 24px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0;
+    padding: 24px 72px 24px 24px;
+}
+  
+/* styling for the open faqs */
+/* TODO: needs to be editable for a future release. */
+
+/* - [ needs to be editable for a future release ]  */
+li.dlwfq-faq-open .dlwfq-fq-content {
+    clear: both; 
+    display: block;
+    margin: 5px -1rem -1.5rem;
+    padding: 0 1.5rem 1rem;
+    background: #28526b;
+    border-top: 1px solid;
+    color: #d6d6d6;
+}
+
