@@ -44,25 +44,8 @@ defined( 'ABSPATH' ) || exit;
                 <!-- FIXME: when the accordian is not set as an option, link too the post page. -->
                 <!-- <a class="dlwfq-fq-target" href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a> -->
 
-                <span class="dlwfq-fq-target">
+                <span class="dlwfq-fq-wrap">
                     <?php the_title(); ?>
-                    <span class="icon dlwfq-pull-right" style="">
-                    <!-- TODO: Make the this editable in the backend of the website -->
-                    <!-- Need to edit the width -->
-                    <!-- Need to edit the stroke within both the trianle and the square   -->
-                    <!-- Add fallback support -->
-
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" viewBox="0 0 100 67.516" style="enable-background:new 0 0 100 67.516;" xml:space="preserve">
-                        <g id="square">
-                            <path class="square-icon" style="fill:none;stroke:#00304f;stroke-width:4;stroke-miterlimit:10;" d="M81.109,52.867c0,6.627-5.373,12-12,12H30.891c-6.628,0-12-5.373-12-12V14.648c0-6.628,5.372-12,12-12h38.219c6.627,0,12,5.372,12,12V52.867z"/>
-                        </g>
-                        <g id="triangle">
-                            <polygon class="dlwfq-open-icon" style="display:none;fill:none;stroke:#00304f;stroke-width:5;stroke-miterlimit:10;" points="66.453,27.787 50,46.397 33.659,27.838"/>
-                            <polygon class="dlwfq-close-icon" style="fill:none;stroke:#00304f;stroke-width:5;stroke-miterlimit:10;" points="33.659,46.397 50.113,27.786 66.453,46.346"/>
-                        </g>
-                    </svg>
-
-                    </span>
                 </span>
 
                 <div class="dlwfq-fq-content">

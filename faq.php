@@ -34,7 +34,6 @@ if (! defined( 'DLWFAQ_PLUGIN_CSS_ASSETS_URL' ) ){
     define( 'DLWFAQ_PLUGIN_CSS_ASSETS_URL', plugins_url() . '/' . DLWFAQ_PLUGIN_NAME . '/assets/css/' );
 }
 
-
 //sets up the faq plugin. 
 function dlwfq_plugin_setup(){
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_core_function.php');
@@ -42,4 +41,5 @@ function dlwfq_plugin_setup(){
     require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/class_dlwfq.php');
     new dlwfq_setup( dlwfq_get_the_slug(true) );
 }
+
 add_action('plugins_loaded', 'dlwfq_plugin_setup');

@@ -1,9 +1,10 @@
+    
     var faqTrigger = document.getElementById('basics');
+    
     // the trigger for the content to display
 
     var faqState = {};
     var currentIndex = [];
-
 
     /**
      * 
@@ -21,7 +22,7 @@
 
     /**
      * 
-     * @param {*} newFaqClickedStatus updates the status for the clicked element
+     * @param string newFaqClickedStatus updates the status for the clicked element
      */
     function newFaqClickedStatus(newFaqClickedStatus){
         if(newFaqClickedStatus === 'open'){
@@ -35,155 +36,203 @@
 
     }
 
-    function addElementsState(newStateA, ourKeys, currentTargetIndex){    
+    function addElementsState(currentTargetIndex){    
         currentIndex.push({'clicked-index': parseInt(currentTargetIndex), 'accordian-state': 'closed', 'has-element-been-click-in-loop': false});
-        faqState.clickedFaqElement = currentIndex; 
-        // //need to loop through the array and make sure that i check if the element is added before i add it.
-        //elementBeinglogged = [];
-        // var i; 
-        for( i = 0; i < faqState.clickedFaqElement.length; i++){
-            
-            //i need to find out if it was the first click or 
+        faqState.clickedFaqElement = currentIndex;
+    }
 
-            //var elementKey = i;
-            var element = faqState.clickedFaqElement[i];
-            if( parseInt(faqState.clickedFaqElement[i]['clicked-index']) === parseInt(currentTargetIndex) ){
-
-                var elementKey = i; 
-                //changes the state of the accordian element when it is clicked. 
-                accordianStatus = newFaqClickedStatus( element['accordian-state']);
-                faqState.clickedFaqElement[elementKey] = {
-                    'element-being-logged': elementKey, 
-                    'clicked-index': parseInt(currentTargetIndex), 
-                    'accordian-state': accordianStatus,
-                    'has-element-been-click-in-loop': true};
-                break;
+    /**
+     * 
+     * this function is responsible for toggling the class's for our accordian. 
+     * 
+     * @param event theTarget - Passing the current clicked element event   
+     * @param int currentParentNode  - Passing how many nodes this click element is from the li element. This is used so we can add or remove our class when the element is clicked. 
+     * @param string addOrRemove - Toggles the class based on the clicked elements current state of the accordian-state. (defaults to open will but will except the value of closed as well) 
+     * @param string toggleClass - The class to remove or add to the li element. 
+     */
+    function toggleOurClass(theTarget, currentParentNode, addOrRemove = 'open', toggleClass = 'dlwfq-faq-open'){
+        //TODO: make sure we validate things that can be set by a user. 
+        switch (currentParentNode) {
+            //will be used when the current target has no parent elements 
+            case 0:
+                //responsible for adding the class
                 
-            }
+                if(theTarget.tagName === "li" ||  theTarget.tagName === "LI" ){
+                    //adds the class
+                    if(addOrRemove === 'open'){
+                        theTarget.classList.add(toggleClass); 
+                    }
+                    else{
+                        theTarget.classList.remove(toggleClass); 
+                    }
+                }
+                break;
+            
+            //will be used when the current target has a parent node of 1 
+            case 1:
+               
+                if(theTarget.parentNode.tagName === "li" ||  theTarget.parentNode.tagName === "LI" ){
+                    //adds the class
+                    if(addOrRemove === 'open'){
+                        theTarget.parentNode.classList.add(toggleClass); 
+                    }
+                    else{
+                        theTarget.parentNode.classList.remove(toggleClass); 
+                    }
+                }
+                break;
 
+            
+            //will be used when the current target has a parent node of 2
+            case 2:
+                
+                if(theTarget.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.tagName === "LI" ){
+                    //adds the class
+                    if(addOrRemove === 'open'){
+                        theTarget.parentNode.parentNode.classList.add(toggleClass); 
+                    }
+                    else{
+                        theTarget.parentNode.parentNode.classList.remove(toggleClass); 
+                    }
+                }
+                break;
+            
+            //will be used when the current target has a parent node of 3
+            case 3:
+                if(theTarget.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.tagName === "LI" ){
+                    //adds the class
+                    if(addOrRemove === 'open'){
+                        theTarget.parentNode.parentNode.parentNode.classList.add(toggleClass); 
+                    }
+                    else{
+                        theTarget.parentNode.parentNode.parentNode.classList.remove(toggleClass); 
+                    }
+                }
+                break;
+            
+            //will be used when the current target has a parent node of 4
+            case 4: 
+            
+                if(theTarget.parentNode.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.parentNode.tagName === "LI" ){
+                    //adds the class
+                    if(addOrRemove === 'open'){
+                        theTarget.parentNode.parentNode.parentNode.parentNode.classList.add(toggleClass); 
+                    }
+                    else{
+                        theTarget.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass); 
+                    }
+                }
+                break;
+            
+            //will be used when the current target has a parent node of 5
+            case 5:
+                
+
+                if(theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.tagName === "LI" ){
+                    //adds the class
+                    if(addOrRemove === 'open'){
+                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add(toggleClass); 
+                    }else{
+                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass);
+                    }
+                }
+            break;
         }
     }
     
     
-    //will trigger the faq being displayed.
+    //will trigger the faq being displayed or closing it depending on wether it was already open.
     faqTrigger.addEventListener('click', function(event){
         event.preventDefault();
-
-        //reseting states on button click
-        // faqState.isFaqBeingDisplayed = false;
-        // var doesEventHaveTarget = event.target.classList.contains('dlwfq-fq-target');
-        var currentTarget = event.target;
-        // getting the index of the element that is clicked on.
-        var currentTargetIndex = currentTarget.getAttribute('data-index'); //gets the current index of the clicked element.
         
-        //making sure that the user can click any where within the li and it will return an index back to me. 
-        //TODO: - to make this more controlable in the future probably should return this a array of how far up the dom i had to climb from the target element to get too the data-index property.
-        if(currentTargetIndex === null){
-            currentTargetIndex = currentTarget.parentNode.getAttribute('data-index');
-            if(currentTargetIndex === null){
-                currentTargetIndex = currentTarget.parentNode.parentNode.getAttribute('data-index');
-                if(currentTargetIndex === null){
-                    currentTargetIndex = currentTarget.parentNode.parentNode.parentNode.getAttribute('data-index');
-                    if(currentTargetIndex === null){
-                        currentTargetIndex = currentTarget.parentNode.parentNode.parentNode.parentNode.getAttribute('data-index');
-                        if(currentTargetIndex === null){
-                            currentTargetIndex = currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute('data-index');
+        //making sure that the current taget contains the dlwfq class 
+        var currentTarget = event.target;
+        var targetClass = 'dlwfq-fq-target'; 
+        //TODO: can be used to make this more dynamic later on.
+
+        //climbs the dom to see if the element clicked is within the target element that we are looking for. 
+        var doesEventHaveTarget = { 
+            'target': currentTarget.classList.contains(targetClass),
+            'currentparentNode': 0, 
+            'currentTargetIndex': parseInt(currentTarget.getAttribute('data-index'))
+        };
+        if(doesEventHaveTarget.target === false){
+            doesEventHaveTarget = { 
+                'target': currentTarget.parentNode.classList.contains(targetClass),
+                'currentparentNode': 1,
+                'currentTargetIndex': parseInt(currentTarget.parentNode.getAttribute('data-index'))
+            };
+            if(doesEventHaveTarget.target === false){
+                doesEventHaveTarget = { 'target': currentTarget.parentNode.parentNode.classList.contains(targetClass),
+                'currentparentNode': 2,
+                'currentTargetIndex': parseInt(currentTarget.parentNode.parentNode.getAttribute('data-index'))
+                };
+                if(doesEventHaveTarget.target === false){
+                    doesEventHaveTarget = { 
+                        'target': currentTarget.parentNode.parentNode.parentNode.classList.contains(targetClass),
+                        'currentparentNode': 3, 
+                        'currentTargetIndex': parseInt(currentTarget.parentNode.parentNode.parentNode.getAttribute('data-index'))
+                    };
+                    if(doesEventHaveTarget.target === false){
+                        doesEventHaveTarget = { 
+                            'target': currentTarget.parentNode.parentNode.parentNode.parentNode.classList.contains(targetClass), 
+                            'currentparentNode': 4, 
+                            'currentTargetIndex': parseInt(currentTarget.parentNode.parentNode.parentNode.parentNode.getAttribute('data-index'))
+                        };
+                        if(doesEventHaveTarget.target === false){
+                            doesEventHaveTarget = { 
+                                'target': currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.contains(targetClass), 
+                                'currentparentNode': 5, 
+                                'currentTargetIndex': parseInt(currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute('data-index'))
+                            };
+                        }
+                        else{
+                            doesEventHaveTarget = { 'target': 'does not seem to be a valid target'};
                         }
                     }
                 }
             }
         }
-        
-        addElementsState( faqState.clickedFaqElement, ['clicked-index', 'accordian-state'],  currentTargetIndex);
-        
-        // addNewStateIndex(currentTargetIndex);
-        // check if we have any active faqs within are state object. 
-        // for testing console.log(isArrayUndefined(faqState.clickedElementInfo)); 
 
-        // //check if the current target is already within the active state, if the current target is not within the active state then we add it to the active state . 
-        // else{
-        //     console.log( checkElementWithinState(faqState.clickedElementInfo, 'clicked-index', currentTargetIndex) ); 
-        // }
+        //making sure that the click is a valid click before adding anything into are state. 
+        if(doesEventHaveTarget.target){
 
-        //adding the states too the states object
-        // addNewStateIndex(currentTargetIndex);
-        
-        
-        //make sure that this is only added if the index is not within the current state. 
-        // console.log(currentTargetIndex);
-        // console.log(currentStates.clickedElementInfo);
-        // faqState.clickedElementInfo.forEach(function(element){
+            //adds the elements to the state array
+            addElementsState(doesEventHaveTarget.currentTargetIndex);
 
-        //     if( parseInt( element['clicked-index'] ) == currentTargetIndex){
-        //         console.log(parseInt(element['clicked-index']) + ' already clicked');
-        //     }else{
-        //         console.log( parseInt( element['clicked-index'] )  + ' has not been clicked');
-        //     }
-            
-        //     //console.log(element['clicked-index'] + 'from loop');
-        //     //console.log(currentTargetIndex + 'from the element clicked'); 
-        // } );
-        //console.log(validclicks); 
-        
-        
+            //need a check to see if we need too loop through the elements within the state array, so we can update the status
+            if(faqState.clickedFaqElement.length > 1){
+                var i;
+                for( i = 0; i < faqState.clickedFaqElement.length; i++){
+                    //var elementKey = i;
+                    var element = faqState.clickedFaqElement[i];
+                    if( parseInt(faqState.clickedFaqElement[i]['clicked-index']) === parseInt(doesEventHaveTarget.currentTargetIndex) ){
 
-        
-        
-        // displaying the faq content too the user if the target of the click contains dlwfq-fq-target. 
-        // this will open up the faq an add in the states needed to track the users clicks on the faqs.
-        // if(doesEventHaveTarget === true){ 
-        
-        //     // // change the state of content being displayed to true
-        //     // faqState.isFaqBeingDisplayed = true;
-        //     // var targetwithinscope = false;
+                        var elementKey = i; 
+                        //changes the state of the accordian element when it is clicked. 
+                        accordianStatus = newFaqClickedStatus( element['accordian-state']);
+                        
+                        //this will give me an active state that i can use.
+                        faqState.clickedFaqElement[elementKey] = {
+                            'element-being-logged': elementKey, 
+                            'clicked-index': parseInt(doesEventHaveTarget.currentTargetIndex), 
+                            'accordian-state': accordianStatus,
+                            'has-element-been-click-in-loop': true
+                        };
 
-        //     // //change the data-content-status too open
-        //     // //event.target.parentNode.setAttribute('data-content-status', 'open');
+                        //this will update the class. 
+                        toggleOurClass(currentTarget, doesEventHaveTarget.currentparentNode, faqState.clickedFaqElement[elementKey]['accordian-state']);
+                        break;   
+                    }
+                }
+            }
+            //this only runs when i have only one element clicked, otherwise this will never run. 
+            else{
+                faqState.clickedFaqElement[0]['accordian-state'] = 'open';
+                toggleOurClass(currentTarget, doesEventHaveTarget.currentparentNode, faqState.clickedFaqElement[0]['accordian-state']);
+            }
 
-        //     // //making sure that the faq-open class is only applied too the li element with a class of dlwsf-fq-target.
-        //     // if(event.target.tagName === "li" ||  event.target.tagName === "LI" ){
-        //     //     //add a class of dlwfq-faq-open
-        //     //     event.target.classList.add("dlwfq-faq-open");
-        //     //     targetwithinscope = true; 
-        //     // }
-
-        //     // //checking to see if the text within the li was clicked on. 
-        //     // if(targetwithinscope === false){
-        //     //     if(event.target.tagName === "span" ||  event.target.tagName === "SPAN"){
-
-        //     //         //making sure that i have a parent of li so i add the dlwfq class too the correct element
-        //     //         if(event.target.parentNode.tagName === "li" ||  event.target.parentNode.tagName === "LI"){
-        //     //             event.target.parentNode.classList.add("dlwfq-faq-open"); 
-        //     //             targetwithinscope = true;
-                    
-        //     //         }
-
-        //     //     }
-        //     // }
-
-        //     // //this will excute when one of the above things are true.
-        //     // if(targetwithinscope){
-            
-        //     // }
-
-        //     // else{
-        //     //     console.log('invalid click');
-        //     // }
-
-        // }
-
-            //testing purposes only.
-            //console.log($clickedElements);
-
-        // }
-
-        // //this should never run if it does then 
-        // else{
-        //     console.log('please contact wrightfloat.com/support');
-        // }
-        // end of making sure that the click was excuted within this section. 
-        console.log(faqState); 
-
+        }
 
     } //end of the click event
                            
