@@ -11,4 +11,4 @@ The main basic features i'm reffering too are:
 
 The current state of this plugin is still in development, so I would not use it at the moment.
 
-I will be adding new features, in my spare time.
+I will be adding new features in my spare time.
