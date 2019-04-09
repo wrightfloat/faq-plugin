@@ -8,12 +8,23 @@ Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+<<<<<<< HEAD
 A easy way to manage, and list your faqs on your WordPress powered website!
 
 == Description ==
+=======
+My main goal with this plugin is for users to be able to setup a basic faq page, and not have to pay to use basic features.
+
+The main basic features i'm reffering too are:
+
+1. Adding a FAQ widget to display most popular posts.
+2. Setup faq Categories with sidebar widget. 
+3. Search the faqs. 
+>>>>>>> 2346f2c2b506796c1f15dabff996a814815262f9
 
 = FAQIZER =
 
+<<<<<<< HEAD
 FAQIZER allows you to manage and list your faqs from in your WordPress website!
 
 The main Goal of FAQIZER is to help everyone that uses wordpress for there website to manage and list their faq within there WordPress site. With our plugin anyone can add, manage, and list faqs as long as they already know how to add a wordpress post to there website! 
@@ -44,3 +55,6 @@ This plugin requires a minimum of PHP 5.3. If you happen to install the plugin, 
 
 = 1.0.0 : April 11, 2019 =
 * Initial version
+=======
+I will be adding new features in my spare time.
+>>>>>>> 2346f2c2b506796c1f15dabff996a814815262f9
