@@ -1,2 +1,5 @@
 .DS_Store
 assets/img/open-icon.png
+.vscode/launch.json
+todos.txt
+readme.txt
