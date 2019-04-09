@@ -86,9 +86,7 @@ function dlwfq_does_theme_have_a_template($return_type, $return_array = false){
         return $does_theme_have_template;
     }
     
-
 } 
-
 
 if ( ! function_exists( 'dlwfq_the_posts_navigation' ) ) :
 	/**
@@ -115,3 +113,20 @@ if ( ! function_exists( 'dlwfq_the_posts_navigation' ) ) :
         
 	}
 endif;
+
+
+
+//grab the amount of posts the user wants to display on the archive page. 
+function dlwfq_get_the_archive_post_count(){
+    $post_count = apply_filters('dlwfq_return_faq_loop_count', 'post_count'); 
+    return $post_count; 
+}
+
+//setup the the total number of posts to display on the site for our custom post type.  
+function dlwfq_pre_get_posts( $query ) {
+    if ( !is_admin() && $query->is_post_type_archive('dlw_wp_faq') ) {
+        // Modify posts per page
+        $query->set( 'posts_per_page', dlwfq_get_the_archive_post_count() ); 
+    }
+}
+add_action( 'pre_get_posts', 'dlwfq_pre_get_posts' );
