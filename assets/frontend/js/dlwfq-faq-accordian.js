@@ -33,7 +33,6 @@
             newStatus = 'open';
         }
         return newStatus; 
-
     }
 
     function addElementsState(currentTargetIndex){    
@@ -126,7 +125,7 @@
             
             //will be used when the current target has a parent node of 5
             case 5:
-                
+
 
                 if(theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.tagName === "LI" ){
                     //adds the class
