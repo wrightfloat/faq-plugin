@@ -3,7 +3,7 @@ var initDlwfqFaqSetup = (function(){
     var faqState = {}; //adding a state
     var currentIndex = [];
 
-    // TODO in a future release remove some of the static ids, and class's and make things more dynamic. 
+    // TODO: in a future release remove some of the static ids, and class's and make things more dynamic. 
 
     /**
      * 
