@@ -44,15 +44,20 @@
                 </span>
 
                 <div class="dlwfq-fq-content">
+                    <?php 
+                    // TODO: display excerpt instead of using the content add this too the indivdual posts as a custom field, 
+                    // --: so we can pick an chosse which posts will display the excerpt or the content on the faq page.
+                    ?>
                     <p><?php  the_content();  //TODO: remove all empty p tags.?></p>
                 </div> <!-- dlwfq-fq-content-->
             </li> 
             <?php endwhile; ?>
             <!-- end of the loop -->
             </ul>
-
-            <!-- pagination here -->
-            <?php echo paginate_links( array( 'total' => $the_query->max_num_pages) ); ?>
+            <div id="dlwfq-pagination">
+                <!-- pagination here -->
+                <?php echo paginate_links( array( 'total' => $the_query->max_num_pages) ); ?>
+            </div>
             <?php wp_reset_postdata(); ?>
 
             <?php else : ?>

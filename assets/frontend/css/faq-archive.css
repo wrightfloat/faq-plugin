@@ -1,3 +1,15 @@
+#faqs-container ul.dlwfq-fq-list{
+  padding-left: 0rem; 
+}
+
+#dlwfq-pagination{
+  margin: 1rem;
+}
+
+.faq-header-title{
+  margin: 1rem;
+}
+
 .dlwfq-pull-right{
   float: right;
 }
@@ -17,10 +29,28 @@ ul.dlwfq-fq-list li{
   padding: 0rem 1rem;
   line-height: 48px;
 }
-  
+
+.dlwfq-fq-content ol li, .dlwfq-fq-content ul li{
+  list-style: initial;
+  background: initial;
+  box-shadow: initial;
+  -webkit-transition: initial;
+  -moz-transition: initial;
+  transition: initial;
+  padding: initial;
+  line-height: initial;
+}
+
+.dlwfq-fq-content ol li{
+  list-style: decimal;
+}
+
 ul.dlwfq-fq-list li a{
   text-decoration: none;
   color: black; 
+}
+ul.dlwfq-fq-list li:last-child .dlwfq-fq-content{
+  margin-bottom: 1rem;
 }
   
 li.dlwfq-faq-open {
@@ -37,7 +67,6 @@ li.dlwfq-faq-open {
     padding: 0 24px 30px;
 }
   
-  
 .dlwfq-fq-trigger {
     font-size: 24px;
     font-size: 1.5rem;
@@ -48,7 +77,6 @@ li.dlwfq-faq-open {
   
 /* styling for the open faqs */
 /* TODO: needs to be editable for a future release. */
-/* - [ needs to be editable for a future release ]  */
 li.dlwfq-faq-open .dlwfq-fq-content {
     clear: both; 
     display: block;
@@ -60,5 +88,5 @@ li.dlwfq-faq-open .dlwfq-fq-content {
 }
 
 .dlwfq-fq-content p{
-    line-height: 26px;
+    line-height: 1rem;
 }
