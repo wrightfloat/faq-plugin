@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * this sets up our settings pages 
+ *
+ * @package Faqizer
+ * @since   0.1.0
+ * Text Domain: dlwfq_faqizer
+ */
+
+defined( 'ABSPATH' ) || exit;
+
     // create custom plugin settings menu
     add_action('admin_menu', 'my_cool_plugin_create_menu');
 
@@ -18,7 +29,7 @@
         register_setting( 'dlwfq-archive-options-group', 'dlwfq-archive-options-slug', 
             array( 
                 'type' => 'string', 
-                'description' => 'the custom slug',
+                'description' => __('Enter Custom Slug', 'dlwfq_faqizer'),
                 'sanitize_callback' => 'dlwfq_sanitize_custom_post_slug',
                 'show_in_rest' =>  false,
                 'default' => false,
@@ -30,7 +41,7 @@
         register_setting( 'dlwfq-archive-options-group', 'dlwfq-total-posts-on-archive-page', 
             array( 
                 'type' => 'integer', 
-                'description' => 'total posts to display on our custom faq page',
+                'description' => __('total posts to display on our custom faq page', 'dlwfq_faqizer'),
                 'sanitize_callback' => 'dlwfq_sanitize_total_posts_to_show',
                 'show_in_rest' =>  false,
                 'default' => false,
@@ -41,7 +52,7 @@
         register_setting( 'dlwfq-archive-options-group', 'dlwfq-archive-title' ,
             array(
                 'type' => 'string', 
-                'description' => 'the title for the archive page',
+                'description' => __('the title for the archive page', 'dlwfq_faqizer'),
                 'sanitize_callback' => 'dlwfq_sanitize_archive_page_title',
                 'show_in_rest' =>  false,
                 'default' => false,
@@ -67,14 +78,14 @@
                 array(
                     'id' => 'archive-title-empty-error',
                     'class' => 'archive-title-empty-error', 
-                    'message' => 'Archive page title field was empty: default will be used until it\'s set.',
+                    'message' => __('Archive page title field was empty: default will be used until it\'s set.', 'dlwfq_faqizer'),
                     'type' => 'error'
                 ),
             'invalid_input_type_error' => 
                 array(
                     'id' => 'archive-title-invalid-input',
                     'class' => 'archive-title-invalid-input', 
-                    'message' => 'Archive title field was not set correctly',
+                    'message' => __('Archive title field was not set correctly' , 'dlwfq_faqizer'),
                     'type' => 'error'            
                 ),
         );
@@ -107,14 +118,14 @@
                 array(
                     'id' => 'custom-slug-empty-error',
                     'class' => 'custom-slug-empty-error', 
-                    'message' => 'Please provide a slug to be used for the faq Page\'s. Slug, ' . $slug_input . ' is invalid.',
+                    'message' => __('Please provide a slug to be used for the faq Page.', 'dlwfq_faqizer'),
                     'type' => 'error'
                 ),
             'invalid_input_type_error' => 
                 array(
                     'id' => 'custom-slug-invalid-input',
                     'class' => 'custom-slug-invalid-input', 
-                    'message' => 'Incorrect format for the custom slug on the faq pages.',
+                    'message' => __('Incorrect format for the custom slug on the faq pages.', 'dlwfq_faqizer'),
                     'type' => 'error'            
                 ),
         );
@@ -169,14 +180,14 @@
                 array(
                     'id' => 'total-posts-empty-error',
                     'class' => 'empty-value-error', 
-                    'message' => 'Number of post to display on Archive page was empty: default will be used until it\'s set.',
+                    'message' => __('Number of post to display on Archive page was empty: default will be used until it\'s set.', 'dlwfq_faqizer'),
                     'type' => 'error'
                 ),
             'invalid_input_type_error' => 
                 array(
                     'id' => 'total-posts-invalid-input',
                     'class' => 'total-posts-invalid-input', 
-                    'message' => 'Only Numbers are allowed.',
+                    'message' => __('Only Numbers are allowed', 'dlwfq_faqizer'),
                     'type' => 'error'            
                 ),
         );
@@ -199,9 +210,11 @@
     function my_cool_plugin_settings_page() { ?>
     
     <div class="wrap">
-    <h1>Main Faq Page Settings</h1>
+    <h1><?php _e('Main Faq Page Settings', 'dlwfq_faqizer'); ?></h1>
     <?php 
-    settings_errors(); // this will display a message on saving the options on our settings page. ?>
+        settings_errors(); 
+        // this will display a message on saving the options on our settings page.
+    ?>
 
     <form method="post" action="options.php">
         <?php settings_fields( 'dlwfq-archive-options-group' );?>
@@ -215,35 +228,35 @@
         <div class="input-wrap">
 
             <div class="input-group">
-                <label for="dlwfq-archive-options-slug" >The Faq Page Slug</label>
+                <label for="dlwfq-archive-options-slug" ><?php _e('The Faq Page Slug', 'dlwfq_faqizer'); ?></label>
                 <input type="text" id="dlwfq-archive-options-slug" name="dlwfq-archive-options-slug" value="<?php echo esc_attr( get_option('dlwfq-archive-options-slug') ); ?>" placeholder="Enter Faq Page slug"/>
                 <?php 
-
-                //make into a function so it's easier too add.
-                $current_installation_options = get_option('dlwfq-installation-options');
-                if( $current_installation_options['has-rewrite-rules-been-updated'] === true  ): ?>
-                    <a class="button preview-button" style="max-width: 130px" href="<?php echo get_post_type_archive_link('dlw_wp_faq');?>">View Faq Page</a>
-                <?php endif; ?>
+                    //make into a function so it's easier too add.
+                    $current_installation_options = get_option('dlwfq-installation-options');
+                    if( $current_installation_options['has-rewrite-rules-been-updated'] === true  ): ?>
+                        <a class="button preview-button" style="max-width: 130px" href="<?php echo get_post_type_archive_link('dlw_wp_faq');?>"><?php _e('View Faq Page', 'dlwfq_faqizer'); ?></a>
+                    <?php endif; 
+                ?>
             </div>
             
             <div class="input-group">
-                <label for="dlwfq-archive-accordion" >Enable accordion on Faq Page</label>
+                <label for="dlwfq-archive-accordion" ><?php _e('Enable accordion on Faq Page', 'dlwfq_faqizer'); ?></label>
                 <input type="checkbox" id="dlwfq-archive-accordion" name="dlwfq-archive-accordion" value="1" <?php checked(1, get_option('dlwfq-archive-accordion'), true); ?> />
             </div>
             
             <div class="input-group">
-                <label for="dlwfq-archive-title">Archive Page Title<span class="dlwfq-help-tip"></span></label> 
+                <label for="dlwfq-archive-title"><?php _e('Archive Page Title', 'dlwfq_faqizer'); ?><span class="dlwfq-help-tip"></span></label> 
                 <input type="text" id="dlwfq-archive-title" name="dlwfq-archive-title" value="<?php echo esc_attr( get_option('dlwfq-archive-title') ); ?>" placeholder="Enter Faq Page Title"/>
             </div>
 
             <div class="input-group">
-                <label for="dlwfq-total-posts-on-archive-page" >Total Amount of posts to display<span class="dlwfq-help-tip"></span></label> 
+                <label for="dlwfq-total-posts-on-archive-page" ><?php _e('Total Amount of faqs to display', 'dlwfq_faqizer'); ?><span class="dlwfq-help-tip"></span></label> 
                 <input type="number" id="dlwfq-total-posts-on-archive-page" name="dlwfq-total-posts-on-archive-page" value="<?php echo esc_attr( get_option('dlwfq-total-posts-on-archive-page') ); ?>" max="999"/></td>
             </div>
 
         </div>
         
-        <?php submit_button('Save Faq Settings'); ?>
+        <?php submit_button( __('Save Faq Settings', 'dlwfq_faqizer') ); ?>
 
     </form>
     </div>

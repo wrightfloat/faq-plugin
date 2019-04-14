@@ -48,7 +48,7 @@
                     // TODO: display excerpt instead of using the content add this too the indivdual posts as a custom field, 
                     // --: so we can pick an chosse which posts will display the excerpt or the content on the faq page.
                     ?>
-                    <p><?php  the_content();  //TODO: remove all empty p tags.?></p>
+                    <p><?php the_content();  //TODO: remove all empty p tags.?></p>
                 </div> <!-- dlwfq-fq-content-->
             </li> 
             <?php endwhile; ?>
@@ -67,7 +67,7 @@
             <!-- ADD A FILTER TO MAKE THIS TEXT MORE DYNAMIC FROM THE BACKEND OF THE SITE. -->
 
             <ul id="basics" class="dlwfq-fq-list">
-                <li class="dlwfq-fq-target" data-content-status="closed" data-index="1"><span class="dlwfq-fq-target"><?php esc_html_e( 'Sorry, No FAQS To Display here' ); ?></span></li>
+                <li class="dlwfq-fq-target" data-content-status="closed" data-index="1"><span class="dlwfq-fq-target"><?php esc_html_e( __('Sorry, No FAQS To Display here', 'dlwfq_faqizer') ); ?></span></li>
             </ul>
         <?php endif; ?>
 

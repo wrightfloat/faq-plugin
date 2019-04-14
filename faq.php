@@ -1,11 +1,13 @@
 <?php
 /*
-Plugin Name: Faqizer
-Plugin URI: http://wrightfloat.com
-Description: A plugin to easily add Frequently asked questions to your website. 
-Author: Daniel Wright
-Version: 1.0
-Author URI: http://wrightfloat.com
+* Plugin Name: Faqizer
+* Plugin URI: http://wrightfloat.com
+* Description: A plugin to easily add Frequently asked questions to your website. 
+* Author: Daniel Wright
+* Author URI: http://wrightfloat.com
+* Version: 0.1
+* Text Domain: dlwfq_faqizer
+* Domain Path: /languages
 */
 
 if( ! defined( 'ABSPATH' ) ) {
@@ -26,10 +28,10 @@ if( !function_exists('dlwfq_plugin_activation') ){
             wp_die(
                 '<p>' .
                 sprintf(
-                    __( 'This plugin can not be activated because it requires a PHP version greater than %1$s. Your PHP version can be updated by your hosting company.', 'my_plugin' ),
+                    __( 'This plugin can not be activated because it requires a PHP version greater than %1$s.', 'dlwfq_faqizer' ),
                     $php
                 )
-                . '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'my_plugin' ) . '</a>'
+                . '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'dlwfq_faqizer' ) . '</a>'
             );
         }
 
@@ -40,10 +42,10 @@ if( !function_exists('dlwfq_plugin_activation') ){
             wp_die(
                 '<p>' .
                 sprintf(
-                    __( 'This plugin can not be activated because it requires a WordPress version greater than %1$s. Please go to Dashboard &#9656; Updates to gran the latest version of WordPress .', 'my_plugin' ),
+                    __( 'This plugin can not be activated because it requires a WordPress version greater than %1$s .', 'dlwfq_faqizer' ),
                     $php
                 )
-                . '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'my_plugin' ) . '</a>'
+                . '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'dlwfq_faqizer' ) . '</a>'
             );
         }
     }
@@ -66,7 +68,7 @@ if( !function_exists('dlwfq_plugin_defaults') ){
 
         //adds a default faq page title
         if( get_option('dlwfq-archive-title') === false){
-            add_option('dlwfq-archive-title', 'Frequently Asked Questions'); //setting the default archive page title to: Frequently Asked Questions
+            add_option('dlwfq-archive-title',  __('Frequently Asked Questions' , 'dlwfq_faqizer')); //setting the default archive page title to: Frequently Asked Questions
         }
 
         //adds number of posts/faqs to display on the faq page 
@@ -117,10 +119,13 @@ if (! defined( 'DLWFAQ_BACKEND_CSS_ASSETS' ) ){
 if( !function_exists('dlwfq_plugin_setup') ){
     //sets up the faq plugin. 
     function dlwfq_plugin_setup(){
+        
+        load_plugin_textdomain( 'dlwfq_faqizer', false, __DIR__ );
         require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_core_function.php');
         require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/dlwfq_custom_actions.php'); //contains all of the custom actions an filters that we need access too. 
         require_once(DLWFAQ_PLUGIN_DIR . '/includes/base/class_dlwfq.php');
         new dlwfq_setup( dlwfq_get_the_slug(true) );
+
     }
     add_action('plugins_loaded', 'dlwfq_plugin_setup');
 }

@@ -100,11 +100,11 @@ if ( ! function_exists( 'dlwfq_the_posts_navigation' ) ) :
 				'prev_text' => sprintf(
 					'%s <span class="nav-prev-text">%s</span>',
 					twentynineteen_get_icon_svg( 'chevron_left', 22 ),
-					__( 'Newer posts', 'twentynineteen' )
+					__( 'Newer posts', 'dlwfq_faqizer' )
 				),
 				'next_text' => sprintf(
 					'<span class="nav-next-text">%s</span> %s',
-					__( 'Older posts', 'twentynineteen' ),
+					__( 'Older posts', 'dlwfq_faqizer' ),
 					twentynineteen_get_icon_svg( 'chevron_right', 22 )
 				),
             )

@@ -33,8 +33,8 @@ class dlwfq_setup{
      */
     public function set_up_custom_posttype(){      
         require_once 'class_dlwfq_custom_post_type.php'; //gets our custom post type class. 
-        $FaqPosttype = new dlwfq_custom_post_type($this->plugin_prefix, $this->custom_post_type_slug, $this->custom_post_type);
-        $FaqPosttype->setupLabels('Faqs', 'Faq', 'Enter frequently asked question\'s'); //setting up labels for our custom post type. 
+        $FaqPosttype = new dlwfq_custom_post_type($this->custom_post_type_slug, $this->custom_post_type);
+        $FaqPosttype->setupLabels('Faqs', 'Faq', __('Enter frequently asked question\'s', 'dlwfq_faqizer') ); //setting up labels for our custom post type. 
     }
 
 
@@ -50,7 +50,7 @@ class dlwfq_setup{
         //add the ability to select supported wordpress themes. This will add in-inline css for those spefic themes. 
 
         global $post;
-        if ( is_post_type_archive ( 'dlw_wp_faq' ) ) { 
+        if ( is_post_type_archive ( $this->custom_post_type ) ) { 
 
             $archive_template_name = 'archive-faqs.php';
             //loads the template from the current active theme if there is a template to use for the custom post type. 

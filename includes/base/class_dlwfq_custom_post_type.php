@@ -10,7 +10,6 @@ defined( 'ABSPATH' ) || exit;
 
 class dlwfq_custom_post_type {
     
-    private $plugin_prefix;
     private $single_page_faq_slug; 
     private $single;
     private $plural;
@@ -18,10 +17,9 @@ class dlwfq_custom_post_type {
     private $custom_title; 
     public  $test_a; 
 
-    public function __construct($plugin_prefix, $custom_post_type_slug, $custom_post_type) {
+    public function __construct($custom_post_type_slug, $custom_post_type) {
         
         // Set post type name
-        $this->plugin_prefix = $plugin_prefix;
         $this->custom_post_type_slug = $custom_post_type_slug;
         $this->custom_post_type = $custom_post_type;
         $this->init(); 
@@ -85,24 +83,24 @@ class dlwfq_custom_post_type {
         $this->custom_title = $custom_title; 
 
         $labels = array(
-            'name'                      => _x( $this->updateCase($single, 'Ucfirst') , 'post type general name', $this->plugin_prefix ), //single name
-            'singular_name'             => _x( $this->updateCase($single, 'Ucfirst') , 'post type singular name', $this->plugin_prefix ),
-            'menu_name'                 => _x( $this->updateCase($plural, 'Ucfirst') , 'admin menu', $this->plugin_prefix ),
-            'add_new'                   => _x( 'Add New' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ), //Add New -item // this is the text that is displayed on the add button on the edit.php page and replaces the add new text within the sidebar menu.
-            'add_new_item'              => __( 'Add New' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ), 
-            'new_item'                  => __( 'New' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ),
-            'edit_item'                 => __( 'Edit' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ),
-            'view_item'                 => __( 'View' . $this->updateCase($single, 'Ucfirst', true) , $this->plugin_prefix ),
-            'view_items'                => __( 'View' . $this->updateCase($plural, 'Ucfirst', true) , $this->plugin_prefix ),
-            'all_items'                 => __( 'All' . $this->updateCase($plural, 'Ucfirst', true) , $this->plugin_prefix ),
-            'search_items'              => __( 'Search'. $this->updateCase($plural, 'Ucfirst', true) , $this->plugin_prefix ),
-            'parent_item_colon'         => __( 'Parent' . $this->updateCase($plural, 'Ucfirst', true) . ':', $this->plugin_prefix ),
-            'not_found'                 => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found.', $this->plugin_prefix ),
-            'not_found_in_trash'        => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found in Trash.', $this->plugin_prefix ),
+            'name'                      => _x( $this->updateCase($single, 'Ucfirst') , 'post type general name', 'dlwfq_faqizer' ), //single name
+            'singular_name'             => _x( $this->updateCase($single, 'Ucfirst') , 'post type singular name', 'dlwfq_faqizer' ),
+            'menu_name'                 => _x( $this->updateCase($plural, 'Ucfirst') , 'admin menu', 'dlwfq_faqizer' ),
+            'add_new'                   => _x( 'Add New' . $this->updateCase($single, 'Ucfirst', true) , 'dlwfq_faqizer' ), //Add New -item // this is the text that is displayed on the add button on the edit.php page and replaces the add new text within the sidebar menu.
+            'add_new_item'              => __( 'Add New' . $this->updateCase($single, 'Ucfirst', true) , 'dlwfq_faqizer' ), 
+            'new_item'                  => __( 'New' . $this->updateCase($single, 'Ucfirst', true) , 'dlwfq_faqizer' ),
+            'edit_item'                 => __( 'Edit' . $this->updateCase($single, 'Ucfirst', true) , 'dlwfq_faqizer' ),
+            'view_item'                 => __( 'View' . $this->updateCase($single, 'Ucfirst', true) , 'dlwfq_faqizer' ),
+            'view_items'                => __( 'View' . $this->updateCase($plural, 'Ucfirst', true) , 'dlwfq_faqizer' ),
+            'all_items'                 => __( 'All' . $this->updateCase($plural, 'Ucfirst', true) , 'dlwfq_faqizer' ),
+            'search_items'              => __( 'Search'. $this->updateCase($plural, 'Ucfirst', true) , 'dlwfq_faqizer' ),
+            'parent_item_colon'         => __( 'Parent' . $this->updateCase($plural, 'Ucfirst', true) . ':', 'dlwfq_faqizer' ),
+            'not_found'                 => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found.', 'dlwfq_faqizer' ),
+            'not_found_in_trash'        => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found in Trash.', 'dlwfq_faqizer' ),
             
-            'items_list_navigation'     => __( 'items_list_navigation' . $this->updateCase($plural, 'Ucfirst', true), $this->plugin_prefix ), //- String for the table pagination hidden heading.
-            'items_list'                => __( 'items_list' . $this->updateCase($plural, 'Ucfirst', true), $this->plugin_prefix ), //- String for the table hidden heading.
-            'name_admin_bar'            => _x( $this->updateCase($single, 'Ucfirst') , 'add new on admin bar', $this->plugin_prefix ),
+            'items_list_navigation'     => __( 'items_list_navigation' . $this->updateCase($plural, 'Ucfirst', true), 'dlwfq_faqizer' ), //- String for the table pagination hidden heading.
+            'items_list'                => __( 'items_list' . $this->updateCase($plural, 'Ucfirst', true), 'dlwfq_faqizer' ), //- String for the table hidden heading.
+            'name_admin_bar'            => _x( $this->updateCase($single, 'Ucfirst') , 'add new on admin bar', 'dlwfq_faqizer' ),
         );
 
         return $this->labels = $labels;
