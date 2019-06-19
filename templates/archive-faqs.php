@@ -2,25 +2,28 @@
         /**
         * The Template for displaying our faqs on the Faqs Archive page. 
         */
-    defined( 'ABSPATH' ) || exit;
-    get_header();
-
+        if ( ! defined( 'ABSPATH' ) ) {
+            exit;
+        }
     ?>
+    
+    <?php get_header(); ?>
+        
+    <div id="faqs-container" class="faq-plugin-template">
+        <section>
+            <header class="faq-header">
+                <h1 class="faq-header-title page-title">
+                    <?php esc_html( dlwfq_echo_archive_title('archive') ); ?>
+                </h1>
+            </header>
+        </section>
 
-    <section>
-        <header class="faq-header">
-            <h1 class="faq-header-title page-title"><?php dlwfq_echo_archive_title(); ?></h1>
-        </header>
-    </section>
-    
-    <div id="faqs-container">
-    
         <?php
             $args = array(
                 'post_type'       => 'dlw_wp_faq',
                 'post_status'     => 'publish',
                 'paged'           => get_query_var( 'paged' ),
-                'posts_per_page'  => 3, //this has to sync with the default posts per page 
+                'posts_per_page'  => esc_attr( dlwfq_get_the_archive_post_count() ), //this has to sync with the default posts per page 
             );
             // the query
             $the_query = new WP_Query( $args ); 
@@ -37,18 +40,27 @@
 
             <li class="dlwfq-fq-target" data-content-status="closed" data-index="<?php echo $counter; ?>">
                 <span class="dlwfq-fq-wrap">
-                    <!-- TODO: make this into an action -->
-                    <?php if(dlwfq_get_accordian_settings() !== true): ?>
-                        <a class="dlwfq-fq-target" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                    <?php else: the_title(); endif; ?>
+                    
+                    <?php 
+                        //if the user does not have accordian enabled a link will be clickable, which will take the user to the single faq page. 
+                        if( dlwfq_get_accordian_settings() !== true){ 
+                    ?>
+                    <a class="dlwfq-fq-target" href="<?php the_permalink(); ?>">
+                        <?php the_title(); ?>
+                    </a>
+
+                    <?php }
+                        //When the user has the accordian enabled no link will appear in the title area of the faq.
+                    else{
+                        the_title();
+                    ?>
+                        <span class="dlwfq-fq-icons"><i class="fa fa-angle-down" aria-hidden="true" style="display: block; line-height: 48px;position: absolute;top: 0px;right: 1rem;"></i></span>
+                    
+                    <?php } ?>
                 </span>
 
                 <div class="dlwfq-fq-content">
-                    <?php 
-                    // TODO: display excerpt instead of using the content add this too the indivdual posts as a custom field, 
-                    // --: so we can pick an chosse which posts will display the excerpt or the content on the faq page.
-                    ?>
-                    <p><?php the_content();  //TODO: remove all empty p tags.?></p>
+                    <p><?php esc_html( the_content() ) ;?></p>
                 </div> <!-- dlwfq-fq-content-->
             </li> 
             <?php endwhile; ?>
@@ -59,18 +71,12 @@
                 <?php echo paginate_links( array( 'total' => $the_query->max_num_pages) ); ?>
             </div>
             <?php wp_reset_postdata(); ?>
-
-            <?php else : ?>
-
-            <!-- TODO: ADD IN SOME STYLING HERE. -->
-            <!-- ADD A FILTER OF BEFORE AN AFTER FOR DEVS. -->
-            <!-- ADD A FILTER TO MAKE THIS TEXT MORE DYNAMIC FROM THE BACKEND OF THE SITE. -->
-
+            
+        <?php else: ?>
             <ul id="basics" class="dlwfq-fq-list">
                 <li class="dlwfq-fq-target" data-content-status="closed" data-index="1"><span class="dlwfq-fq-target"><?php esc_html_e( __('Sorry, No FAQS To Display here', 'dlwfq_faqizer') ); ?></span></li>
             </ul>
         <?php endif; ?>
-
     </div>
 
 <?php get_footer(); ?>
