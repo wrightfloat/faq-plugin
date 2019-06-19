@@ -35,6 +35,7 @@ var initDlwfqFaqSetup = (function(){
      */
 
     var toggleOurClass = function(theTarget, currentParentNode, addOrRemove = 'open', toggleClass = 'dlwfq-faq-open'){
+        
         //TODO: make sure we validate things that can be set by a user. 
         switch (currentParentNode) {
             //will be used when the current target has no parent elements 
@@ -45,9 +46,15 @@ var initDlwfqFaqSetup = (function(){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.classList.add(toggleClass); 
+
+                        // used to transform my icon when an faq is clicked on. 
+                        theTarget.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
                     }
                     else{
                         theTarget.classList.remove(toggleClass); 
+
+                        // used to remove the rotation from the faq icon.
+                        theTarget.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
                     }
                 }
                 break;
@@ -59,9 +66,12 @@ var initDlwfqFaqSetup = (function(){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.classList.add(toggleClass); 
+                        theTarget.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
+                        // console.log(theTarget.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(108deg)" );
                     }
                     else{
                         theTarget.parentNode.classList.remove(toggleClass); 
+                        theTarget.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
                     }
                 }
                 break;
@@ -74,9 +84,11 @@ var initDlwfqFaqSetup = (function(){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.parentNode.classList.add(toggleClass); 
+                        theTarget.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
                     }
                     else{
                         theTarget.parentNode.parentNode.classList.remove(toggleClass); 
+                        theTarget.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
                     }
                 }
                 break;
@@ -87,9 +99,11 @@ var initDlwfqFaqSetup = (function(){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.parentNode.parentNode.classList.add(toggleClass); 
+                        theTarget.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
                     }
                     else{
                         theTarget.parentNode.parentNode.parentNode.classList.remove(toggleClass); 
+                        theTarget.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
                     }
                 }
                 break;
@@ -99,9 +113,11 @@ var initDlwfqFaqSetup = (function(){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.parentNode.parentNode.parentNode.classList.add(toggleClass); 
+                        theTarget.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
                     }
                     else{
-                        theTarget.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass); 
+                        theTarget.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass);
+                        theTarget.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = ''; 
                     }
                 }
                 break;
@@ -112,8 +128,10 @@ var initDlwfqFaqSetup = (function(){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add(toggleClass); 
+                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
                     }else{
                         theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass);
+                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
                     }
                 }
             break;
@@ -177,7 +195,7 @@ var initDlwfqFaqSetup = (function(){
                     }
                 }
 
-                //making sure that the click is a valid click before adding anything into are state. 
+                //making sure that the click is a valid click before adding anything into the state. 
                 if(doesEventHaveTarget.target){
 
                     //adds the elements to the state array
