@@ -1,8 +1,6 @@
     <?php 
         /**
-        * The Template for displaying our faq topics taxonomy.
-        * @package Faqizer
-        * @since   0.2.0 
+        * The Template for displaying our faq topics. 
         */
         if ( ! defined( 'ABSPATH' ) ) {
             exit;
