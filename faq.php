@@ -85,7 +85,6 @@ function dlwfq_plugin_activation() {
         );
     }
 
-
     /**
      * setting up some default options for our faqs plugin's setting's page on that will occur only on plugin activation.
      *
@@ -95,14 +94,11 @@ function dlwfq_plugin_activation() {
     //adds the accordian default here.
     if( get_option('dlwfq-archive-accordion') === false){
         add_option('dlwfq-archive-accordion', 0);
-            
-        //by default not displaying the accordian on the faq page.
     }
 
     //adds a default faq page title
     if( get_option('dlwfq-archive-title') === false){
         add_option('dlwfq-archive-title',  __('Frequently Asked Questions' , 'dlwfq_faqizer')); 
-        //setting the default archive page title to: Frequently Asked Questions
     }
 
     //adds number of posts/faqs to display on the faq page 
@@ -146,11 +142,7 @@ function dlwfq_plugin_activation() {
 
     flush_rewrite_rules();
 
-    /**
-    * Run this on activation
-    * Set a transient so that we know we've just activated the plugin.
-    */
-   
+    // Run this on activation, so that we know we've just activated the plugin.
     set_transient( 'dlwfq_faqizer_activated', 1 );
 
 }
@@ -183,9 +175,7 @@ function dlwfq_plugin_setup(){
     require_once( DLWFQ_PLUGIN_DIR_PATH . '/includes/base/dlwfq_core_function.php'  );
     require_once( DLWFQ_PLUGIN_DIR_PATH . '/includes/base/dlwfq_custom_actions.php' ); //contains all of the custom actions an filters that we need access too. 
     require_once( DLWFQ_PLUGIN_DIR_PATH . '/includes/base/class_dlwfq.php' );
-    
 
-    
     //grabing the custom slug setup from our database 
     new dlwfq_setup( dlwfq_get_the_slug(true) ); 
 
