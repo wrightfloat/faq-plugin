@@ -24,7 +24,6 @@ if( !function_exists('dlwfq_plugin_activation') ){
 
         if ( version_compare( PHP_VERSION, $php, '<' ) ) {
             deactivate_plugins( basename( __FILE__ ) );
-            //TODO: display an error message with wordpress's alert system.
             wp_die(
                 '<p>' .
                 sprintf(
@@ -37,8 +36,6 @@ if( !function_exists('dlwfq_plugin_activation') ){
 
         if ( version_compare( $wp_version, $wp, '<' ) ) {
             deactivate_plugins( basename( __FILE__ ) );
-            
-            //TODO: display an error message with wordpress's alert system.
             wp_die(
                 '<p>' .
                 sprintf(
