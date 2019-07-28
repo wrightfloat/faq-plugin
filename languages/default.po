@@ -1,163 +1,150 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: faqizer\n"
-"POT-Creation-Date: 2019-04-14 11:10-0500\n"
-"PO-Revision-Date: 2019-04-14 11:35-0500\n"
+"POT-Creation-Date: 2019-06-09 18:23-0500\n"
+"PO-Revision-Date: 2019-06-09 18:24-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: faq.php\n"
-"X-Poedit-SearchPath-1: includes/base/dlwfq_settings_pages.php\n"
-"X-Poedit-SearchPath-2: includes/base/class_dlwfq_custom_post_type.php\n"
-"X-Poedit-SearchPath-3: includes/base/dlwfq_core_function.php\n"
-"X-Poedit-SearchPath-4: includes/base/class_dlwfq.php\n"
+"X-Poedit-SearchPath-1: includes/base\n"
 
-#: faq.php:31
+#: faq.php:70
 #, php-format
 msgid ""
 "This plugin can not be activated because it requires a PHP version greater "
 "than %1$s."
 msgstr ""
 
-#: faq.php:34 faq.php:48
+#: faq.php:71 faq.php:83
 msgid "go back"
 msgstr ""
 
-#: faq.php:45
+#: faq.php:80
 #, php-format
 msgid ""
 "This plugin can not be activated because it requires a WordPress version "
 "greater than %1$s ."
 msgstr ""
 
-#: faq.php:71
+#: faq.php:103
 msgid "Frequently Asked Questions"
 msgstr ""
 
-#: includes/base/class_dlwfq.php:37
+#: faq.php:169
+msgid "Thanks for installing and activating the Faqizer plugin"
+msgstr ""
+
+#: faq.php:191
+msgid "Settings"
+msgstr ""
+
+#: includes/base/class_dlwfq.php:42
 msgid "Enter frequently asked question's"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:90
+#: includes/base/class_dlwfq_custom_post_type.php:77
 msgid "Add New"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:91
+#: includes/base/class_dlwfq_custom_post_type.php:78
 msgid "New"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:92
+#: includes/base/class_dlwfq_custom_post_type.php:79
 msgid "Edit"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:93
-#: includes/base/class_dlwfq_custom_post_type.php:94
+#: includes/base/class_dlwfq_custom_post_type.php:80
+#: includes/base/class_dlwfq_custom_post_type.php:81
 msgid "View"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:95
+#: includes/base/class_dlwfq_custom_post_type.php:82
 msgid "All"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:96
+#: includes/base/class_dlwfq_custom_post_type.php:83
 msgid "Search"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:97
+#: includes/base/class_dlwfq_custom_post_type.php:84
 msgid "Parent"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:98
-#: includes/base/class_dlwfq_custom_post_type.php:99
+#: includes/base/class_dlwfq_custom_post_type.php:85
+#: includes/base/class_dlwfq_custom_post_type.php:86
 msgid "No"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:101
+#: includes/base/class_dlwfq_custom_post_type.php:87
 msgid "items_list_navigation"
 msgstr ""
 
-#: includes/base/class_dlwfq_custom_post_type.php:102
+#: includes/base/class_dlwfq_custom_post_type.php:88
 msgid "items_list"
 msgstr ""
 
-#: includes/base/dlwfq_core_function.php:103
+#: includes/base/dlwfq_core_function.php:55
 msgid "Newer posts"
 msgstr ""
 
-#: includes/base/dlwfq_core_function.php:107
+#: includes/base/dlwfq_core_function.php:59
 msgid "Older posts"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:32
+#: includes/base/dlwfq_settings_pages.php:35
 msgid "Enter Custom Slug"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:44
+#: includes/base/dlwfq_settings_pages.php:47
+#: includes/base/dlwfq_settings_pages.php:69
 msgid "total posts to display on our custom faq page"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:55
+#: includes/base/dlwfq_settings_pages.php:58
 msgid "the title for the archive page"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:81
-msgid ""
-"Archive page title field was empty: default will be used until it's set."
-msgstr ""
-
-#: includes/base/dlwfq_settings_pages.php:88
-msgid "Archive title field was not set correctly"
-msgstr ""
-
-#: includes/base/dlwfq_settings_pages.php:121
-msgid "Please provide a slug to be used for the faq Page."
-msgstr ""
-
-#: includes/base/dlwfq_settings_pages.php:128
-msgid "Incorrect format for the custom slug on the faq pages."
-msgstr ""
-
-#: includes/base/dlwfq_settings_pages.php:183
-msgid ""
-"Number of post to display on Archive page was empty: default will be used "
-"until it's set."
-msgstr ""
-
-#: includes/base/dlwfq_settings_pages.php:190
-msgid "Only Numbers are allowed"
-msgstr ""
-
-#: includes/base/dlwfq_settings_pages.php:213
+#: includes/base/dlwfq_settings_pages.php:135
 msgid "Main Faq Page Settings"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:231
+#: includes/base/dlwfq_settings_pages.php:149
 msgid "The Faq Page Slug"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:237
+#: includes/base/dlwfq_settings_pages.php:150
+msgid "Enter Faq Page slug"
+msgstr ""
+
+#: includes/base/dlwfq_settings_pages.php:152
 msgid "View Faq Page"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:243
+#: includes/base/dlwfq_settings_pages.php:156
 msgid "Enable accordion on Faq Page"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:248
+#: includes/base/dlwfq_settings_pages.php:161
 msgid "Archive Page Title"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:253
-msgid "Total Amount of faqs to display"
+#: includes/base/dlwfq_settings_pages.php:162
+msgid "Enter Faq Page Title"
 msgstr ""
 
-#: includes/base/dlwfq_settings_pages.php:259
+#: includes/base/dlwfq_settings_pages.php:166
+msgid "Faqs To Display Per Page"
+msgstr ""
+
+#: includes/base/dlwfq_settings_pages.php:172
 msgid "Save Faq Settings"
 msgstr ""

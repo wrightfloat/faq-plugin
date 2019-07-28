@@ -62,7 +62,6 @@ function dlwfq_plugin_activation() {
 
     $php = '5.3';
     $wp  = '4.5';
-    
     if ( version_compare( PHP_VERSION, $php, '<' ) ) {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die(
@@ -108,6 +107,7 @@ function dlwfq_plugin_activation() {
     //adds number of posts/faqs to display on the faq page 
     if( get_option('dlwfq-total-posts-on-archive-page') === false){
         add_option('dlwfq-total-posts-on-archive-page', 10); 
+        //setting the default post too display on the faq page to: 10 
     }
 
     //setting the slug to be used for the faq page's
@@ -117,7 +117,7 @@ function dlwfq_plugin_activation() {
 
     //setting plugin version
     if( get_option('dlwfq-plugin-v') === false ){ 
-        add_option('dlwfq-plugin-v', '0.1.1' ); 
+        add_option('dlwfq-plugin-v', '0.2' ); 
     }
 
     //registering our post type in the activation hook, so the user has a faq page setup right away. 
@@ -183,8 +183,6 @@ function dlwfq_plugin_setup(){
     require_once( DLWFQ_PLUGIN_DIR_PATH . '/includes/base/dlwfq_core_function.php'  );
     require_once( DLWFQ_PLUGIN_DIR_PATH . '/includes/base/dlwfq_custom_actions.php' ); //contains all of the custom actions an filters that we need access too. 
     require_once( DLWFQ_PLUGIN_DIR_PATH . '/includes/base/class_dlwfq.php' );
-    
-
     
     //grabing the custom slug setup from our database 
     new dlwfq_setup( dlwfq_get_the_slug(true) ); 

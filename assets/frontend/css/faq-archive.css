@@ -1,92 +1,101 @@
-#faqs-container ul.dlwfq-fq-list{
-  padding-left: 0rem; 
-}
+  #faqs-container ul.dlwfq-fq-list{
+    padding-left: 0rem; 
+  }
 
-#dlwfq-pagination{
-  margin: 1rem;
-}
-
-.faq-header-title{
-  margin: 1rem;
-}
-
-.dlwfq-pull-right{
-  float: right;
-}
-
-ul.dlwfq-fq-list{
+  #faqs-container{
+    max-width: 1200px;
+    margin: 0px auto;
+  }
+  
+  #dlwfq-pagination{
+    margin: 1rem;
+  }
+  
+  .faq-header-title{
+    margin: 1rem;
+  }
+  
+  .dlwfq-pull-right{
+    float: right;
+  }
+  
+  ul.dlwfq-fq-list {
     margin-block-start: 1rem;
     margin-block-end: 1rem;
-}
-
-ul.dlwfq-fq-list li{
-  list-style: none;
-  background: #ffffff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  -webkit-transition: box-shadow 0.2s;
-  -moz-transition: box-shadow 0.2s;
-  transition: box-shadow 0.2s;
-  padding: 0rem 1rem;
-  line-height: 48px;
-}
-
-.dlwfq-fq-content ol li, .dlwfq-fq-content ul li{
-  list-style: initial;
-  background: initial;
-  box-shadow: initial;
-  -webkit-transition: initial;
-  -moz-transition: initial;
-  transition: initial;
-  padding: initial;
-  line-height: initial;
-}
-
-.dlwfq-fq-content ol li{
-  list-style: decimal;
-}
-
-ul.dlwfq-fq-list li a{
-  text-decoration: none;
-  color: black; 
-}
-ul.dlwfq-fq-list li:last-child .dlwfq-fq-content{
-  margin-bottom: 1rem;
-}
+    padding-inline-start: 0px;
+  }
   
-li.dlwfq-faq-open {
-  background: #ffffff;
-  margin-bottom: 6px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  -webkit-transition: box-shadow 0.2s;
-  -moz-transition: box-shadow 0.2s;
-  transition: box-shadow 0.2s;
-}
+  ul.dlwfq-fq-list li{
+    list-style: none;
+    background: #ffffff;
+    transition: box-shadow 0.2s;
+    padding: 0rem 1rem;
+    line-height: 48px;
+    border: 1px solid #e8e8e8;
+    position: relative;
+    margin-bottom: .5rem;
+  }
   
-.dlwfq-fq-content{
-    display: none;
-    padding: 0 24px 30px;
-}
+  .dlwfq-fq-content ol li, .dlwfq-fq-content ul li{
+    list-style: initial;
+    background: initial;
+    box-shadow: initial;
+    -webkit-transition: initial;
+    -moz-transition: initial;
+    transition: initial;
+    padding: initial;
+    line-height: 1.5rem;
+    border: none; 
+  }
   
-.dlwfq-fq-trigger {
-    font-size: 24px;
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin: 0;
-    padding: 24px 72px 24px 24px;
-}
+  .dlwfq-fq-content ol li{
+    list-style: decimal;
+  }
   
-/* styling for the open faqs */
-/* TODO: needs to be editable for a future release. */
-li.dlwfq-faq-open .dlwfq-fq-content {
-    clear: both; 
-    display: block;
-    margin: 0px -1rem -1.5rem;
-    padding: 0 1.5rem 1rem;
-    background: #28526b;
-    border-top: 1px solid;
-    color: #d6d6d6;
-}
+  ul.dlwfq-fq-list li a{
+    text-decoration: none;
+    color: black; 
+  }
+  ul.dlwfq-fq-list li:last-child .dlwfq-fq-content{
+    margin-bottom: 1rem;
+  }
+    
+  li.dlwfq-faq-open {
+    background: #ffffff;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    -webkit-transition: box-shadow 0.2s;
+    -moz-transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s;
+  }
+    
+  .dlwfq-fq-content{
+      display: none;
+  }
+    
+  .dlwfq-fq-trigger {
+      font-size: 24px;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin: 0;
+      padding: 24px 72px 24px 24px;
+  }
+    
+  /* styling for the open faqs */
+  /* TODO: needs to be editable for a future release. */
+  li.dlwfq-faq-open .dlwfq-fq-content {
+      clear: both; 
+      display: block;
+      background: #ffffff;
+      border-top: 1px solid #e8e8e8;;
+      color: #484848;
+  }
+  
+  .dlwfq-fq-content p{
+      line-height: 1.5rem;
+      margin: 1.5rem 0 1.5rem;
+  }
 
-.dlwfq-fq-content p{
-    line-height: 1rem;
-}
+  span.dlwfq-fq-wrap{
+    color: #484848;
+  }

@@ -1,12 +1,13 @@
 <?php
 /**
  * Faqizer setup custom posttype setup class
- *
  * @package Faqizer
  * @since   0.1.0
  */
 
-defined( 'ABSPATH' ) || exit;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 class dlwfq_custom_post_type {
     
@@ -15,56 +16,43 @@ class dlwfq_custom_post_type {
     private $plural;
     public  $custom_post_type_slug;
     private $custom_title; 
-    public  $test_a; 
 
     public function __construct($custom_post_type_slug, $custom_post_type) {
-        
         // Set post type name
         $this->custom_post_type_slug = $custom_post_type_slug;
         $this->custom_post_type = $custom_post_type;
-        $this->init(); 
+        $this->init();
     }
 
     private function init(){
-        
-        add_action('init', array($this, 'dlw_wp_faq_create_posttype' ) );
+        add_action('init', array($this, 'create_our_custom_posttype' ) );
 
         //updates the title placeholder on custom post type
         add_filter( 'enter_title_here', array( $this, 'change_enter_title_here_text' ) );
     }
 
-
     protected function updateCase($string, $updateCase, $addSpace = false){
-
-
         //make sure that this is not empty.
         if( isset($string) ){
             if($updateCase !== false){
-    
                 switch ($updateCase) {
                     case 'lcfirst':
                         $string = lcfirst($string); // converts the first character of a string to lowercase.
                         break;
-    
                     case 'ucfirst':
                         $string = ucfirst($string); // converts the first character of a string to uppercase.
                         break;
                     
                 }
-    
             }
-    
             if($addSpace){
                 $string = str_repeat('&nbsp;', 1) . $string . str_repeat('&nbsp;', 1);
             }
-            
             else{
                 $string = $string;
             }
         }
-    
         return $string; 
-    
     }
 
     /**
@@ -81,7 +69,6 @@ class dlwfq_custom_post_type {
         $this->plural = $plural;
         $this->single = $single;
         $this->custom_title = $custom_title; 
-
         $labels = array(
             'name'                      => _x( $this->updateCase($single, 'Ucfirst') , 'post type general name', 'dlwfq_faqizer' ), //single name
             'singular_name'             => _x( $this->updateCase($single, 'Ucfirst') , 'post type singular name', 'dlwfq_faqizer' ),
@@ -97,12 +84,10 @@ class dlwfq_custom_post_type {
             'parent_item_colon'         => __( 'Parent' . $this->updateCase($plural, 'Ucfirst', true) . ':', 'dlwfq_faqizer' ),
             'not_found'                 => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found.', 'dlwfq_faqizer' ),
             'not_found_in_trash'        => __( 'No' . $this->updateCase($plural, 'Ucfirst', true) . 'found in Trash.', 'dlwfq_faqizer' ),
-            
             'items_list_navigation'     => __( 'items_list_navigation' . $this->updateCase($plural, 'Ucfirst', true), 'dlwfq_faqizer' ), //- String for the table pagination hidden heading.
             'items_list'                => __( 'items_list' . $this->updateCase($plural, 'Ucfirst', true), 'dlwfq_faqizer' ), //- String for the table hidden heading.
             'name_admin_bar'            => _x( $this->updateCase($single, 'Ucfirst') , 'add new on admin bar', 'dlwfq_faqizer' ),
         );
-
         return $this->labels = $labels;
     }
 
@@ -113,9 +98,8 @@ class dlwfq_custom_post_type {
      * @return void
      */
     
-    public function dlw_wp_faq_create_posttype() {
+    public function create_our_custom_posttype() {
         $labels = $this->labels;
-
         register_post_type(  $this->custom_post_type,
             array(
                 'labels' => $labels,
@@ -138,11 +122,10 @@ class dlwfq_custom_post_type {
                 'show_in_rest' => false, //Whether to expose this post type in the REST API.
             )
         );
-       
     }
 
     /**
-     * edits the placeholder on the new and edit screens for our post type. 
+     * edits the h1 with the class of .wp-heading-inline on the new and edit screens for the custom post type. 
      *
      * @param string $title the placeholder for the post title on the edit screens
      * @return void
@@ -155,4 +138,6 @@ class dlwfq_custom_post_type {
         }
         return $title;   
     }
+
+
 }

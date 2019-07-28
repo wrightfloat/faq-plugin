@@ -28,5 +28,5 @@ The main Goal of FAQIZER is to help everyone that uses wordpress for there websi
 * Tags: faq, frequently asked questions
 * Requires at least: 4.5 (Wordpress Version)
 * Tested up to: 5.1.0 (Wordpress Version)
-* License: GPLv2
+* License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
