@@ -5,7 +5,7 @@
 * Description: A plugin to add Frequently Asked Questions to your website. The Plugin is in the early stages, an will have new features added.  
 * Author: Daniel Wright
 * Author URI: http://wrightfloat.com
-* Version: 0.2
+* Version: 1.0
 * Text Domain: dlwfq_faqizer
 * Domain Path: /languages
 */
@@ -14,12 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-//-------------------------------
-// My Function Prefix is - dlwfq
-// Constant Prefix's are - DLWFQ
-//-------------------------------
-
-// TODO: add in a check to see if any of my plugin constants are being defined by another plugin for compatiblity, so my plugin can be disabled an prompt the user about this issue. 
 if(! defined( 'DLWFQ_PLUGIN_DIR_URL' ) ){
     define( 'DLWFQ_PLUGIN_DIR_URL', plugins_url(__FILE__) );
 }
@@ -113,30 +107,31 @@ function dlwfq_plugin_activation() {
 
     //setting plugin version
     if( get_option('dlwfq-plugin-v') === false ){ 
-        add_option('dlwfq-plugin-v', '0.1.1' ); 
+        add_option('dlwfq-plugin-v', '0.2' ); 
     }
 
     //registering our post type in the activation hook, so the user has a faq page setup right away. 
     //always make sure this is exaclty the same as what's in the plugin post type class. 
-    register_post_type( 'dlw_wp_faq', array(
-        'labels' => array('name'=> 'faqs', 'singular_name' => 'faq'), 
-        'description' => 'Enter a FAQ',
-        'public' => true,
-        'exclude_from_search' => false, //Whether to exclude posts with this post type from front end search results.
-        'publicly_queryable' => true, //Whether queries can be performed on the front end as part of parse_request.
-        'show_ui' => true, //Whether to generate a default UI for managing this post type in the admin
-        'show_in_nav_menus' => true, //Whether to generate a default UI for managing this post type in the admin
-        'show_in_menu' => true, //Where to show the post type in the admin menu. show_ui must be true.
-        'show_in_admin_bar' => true, //Whether to make this post type available in the WordPress admin bar.
-        'menu_position' => 102, //The position in the menu order the post type should appear. show_in_menu must be true.
-        'menu_icon' => 'dashicons-flag', 
-        'hierarchical' => false, //Whether the post type is hierarchical (e.g. page). Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page.
-        'supports' => array('title', 'editor', 'author'),   //title, editor, author, thumbnail, excerpt, trackbacks, custom-fields, comments, revisions, page-attributes, post-formats
-        'has_archive' => true, //Enables post type archives. Will use $post_type as archive slug by default.
-        'rewrite' => array('slug' => faqs, 'with_front' => false ),// Triggers the handling of rewrites for this post type. To prevent rewrites, set to false.
-        'can_export' => true,  //allows users to export a csv file of this post type
-        'delete_with_user' => false, //Whether to delete posts of this type when deleting a user. If true, posts of this type belonging to the user will be moved to trash when then user is deleted. If false, posts of this type belonging to the user will not be trashed or deleted. If not set (the default), posts are trashed if post_type_supports('author'). Otherwise posts are not trashed or deleted.
-        'show_in_rest' => false, //Whether to expose this post type in the REST API. 
+    register_post_type( 'dlw_wp_faq', 
+        array(
+            'labels' => array('name'=> 'faqs', 'singular_name' => 'faq'), 
+            'description' => 'Enter a FAQ',
+            'public' => true,
+            'exclude_from_search' => false, //Whether to exclude posts with this post type from front end search results.
+            'publicly_queryable' => true, //Whether queries can be performed on the front end as part of parse_request.
+            'show_ui' => true, //Whether to generate a default UI for managing this post type in the admin
+            'show_in_nav_menus' => true, //Whether to generate a default UI for managing this post type in the admin
+            'show_in_menu' => true, //Where to show the post type in the admin menu. show_ui must be true.
+            'show_in_admin_bar' => true, //Whether to make this post type available in the WordPress admin bar.
+            'menu_position' => 102, //The position in the menu order the post type should appear. show_in_menu must be true.
+            'menu_icon' => 'dashicons-flag', 
+            'hierarchical' => false, //Whether the post type is hierarchical (e.g. page). Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page.
+            'supports' => array('title', 'editor', 'author'),   //title, editor, author, thumbnail, excerpt, trackbacks, custom-fields, comments, revisions, page-attributes, post-formats
+            'has_archive' => true, //Enables post type archives. Will use $post_type as archive slug by default.
+            'rewrite' => array('slug' => faqs, 'with_front' => false ),// Triggers the handling of rewrites for this post type. To prevent rewrites, set to false.
+            'can_export' => true,  //allows users to export a csv file of this post type
+            'delete_with_user' => false, //Whether to delete posts of this type when deleting a user. If true, posts of this type belonging to the user will be moved to trash when then user is deleted. If false, posts of this type belonging to the user will not be trashed or deleted. If not set (the default), posts are trashed if post_type_supports('author'). Otherwise posts are not trashed or deleted.
+            'show_in_rest' => false, //Whether to expose this post type in the REST API. 
         )
     );
 
@@ -146,29 +141,25 @@ function dlwfq_plugin_activation() {
     set_transient( 'dlwfq_faqizer_activated', 1 );
 
 }
-
 register_activation_hook( __FILE__,  'dlwfq_plugin_activation' );
 
-
 /**
-* will display an activation notice for the faqizer plugin.
+* will display an activation notice when the plugin is installed.
 */
 function dlwfq_plugin_activation_notice() {
-    
     // Check the transient to see if we've just activated the plugin
     if( get_transient( 'dlwfq_faqizer_activated' ) ){
-
         echo '<div class="notice notice-success">' . __( 'Thanks for installing and activating the Faqizer plugin.', 'dlwfq_faqizer' ) . '</div>';
-
         // Delete the transient so we don't keep displaying the activation message
         delete_transient( 'dlwfq_faqizer_activated' );
     }
-
 }
+
 add_action( 'admin_notices', 'dlwfq_plugin_activation_notice' );
 
 //Actually setup the faq plugin. 
 function dlwfq_plugin_setup(){
+    // adding translation
     load_plugin_textdomain( 'dlwfq_faqizer', false, __DIR__ ); 
 
     //getting our required files. 
@@ -182,15 +173,15 @@ function dlwfq_plugin_setup(){
     function dlwfq_plugin_add_settings_link( $links ) {
         $settings_link = '<a href="admin.php?page=dlwfq-settings">' . __( 'Settings' ) . '</a>';
         array_push( $links, $settings_link );
-            return $links;
+        return $links;
     }
 
+    // adds the settings link too the plugins installed admin page.
     $plugin = plugin_basename( __FILE__ );
     add_filter( "plugin_action_links_$plugin", 'dlwfq_plugin_add_settings_link' );
 
     //faqs custom taxonomy called faq topics. 
     function dlwfq_create_topics_tax() {
-
         register_taxonomy(
             'dlwfq_topics',
             'dlw_wp_faq',
