@@ -24,7 +24,6 @@ The main Goal of FAQIZER is to help everyone that uses wordpress for there websi
 
 #### Important info
 * Contributors: Wrightfloat
-* Donate link: http://www.wrightfloat.com/donate/
 * Tags: faq, frequently asked questions
 * Requires at least: 4.5 (Wordpress Version)
 * Tested up to: 5.1.0 (Wordpress Version)
