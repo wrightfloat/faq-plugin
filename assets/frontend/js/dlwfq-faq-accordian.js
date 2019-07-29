@@ -41,97 +41,85 @@ var initDlwfqFaqSetup = (function(){
             //will be used when the current target has no parent elements 
             case 0:
                 //responsible for adding the class
-                
                 if(theTarget.tagName === "li" ||  theTarget.tagName === "LI" ){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.classList.add(toggleClass); 
-
-                        // used to transform my icon when an faq is clicked on. 
-                        theTarget.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
+                        // making sure that i have the icon class div element added. 
+                        if( theTarget.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.children[0].children[0].children[0].style.transform = "rotate(180deg)";
+                        }
                     }
                     else{
                         theTarget.classList.remove(toggleClass); 
-
-                        // used to remove the rotation from the faq icon.
-                        theTarget.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
+                        //remove the transformation of the icon. 
+                        if( theTarget.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.children[0].children[0].children[0].style.transform = "";
+                        }
                     }
                 }
                 break;
             
-            //will be used when the current target has a parent node of 1 
+            //runs when faq title text is clicked. 
             case 1:
-               
                 if(theTarget.parentNode.tagName === "li" ||  theTarget.parentNode.tagName === "LI" ){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.classList.add(toggleClass); 
-                        theTarget.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
-                        // console.log(theTarget.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(108deg)" );
+
+                        // making sure that i have the icon class div element added. 
+                        if( theTarget.parentNode.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.parentNode.children[0].children[0].children[0].style.transform = "rotate(180deg)";
+                        }
                     }
                     else{
                         theTarget.parentNode.classList.remove(toggleClass); 
-                        theTarget.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
+                        
+                        //remove the transformation of the icon. 
+                        if( theTarget.parentNode.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.parentNode.children[0].children[0].children[0].style.transform = "";
+                        }
                     }
                 }
                 break;
 
-            
-            //will be used when the current target has a parent node of 2
+            //Should only run when the user clicks on white space within the content area.  
             case 2:
-                
                 if(theTarget.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.tagName === "LI" ){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.parentNode.classList.add(toggleClass); 
-                        theTarget.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
+
+                        if( theTarget.parentNode.parentNode.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.parentNode.parentNode.children[0].children[0].children[0].style.transform = "rotate(180deg)";
+                        }
                     }
                     else{
                         theTarget.parentNode.parentNode.classList.remove(toggleClass); 
-                        theTarget.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
+                        //remove the transformation of the icon. 
+                        if( theTarget.parentNode.parentNode.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.parentNode.parentNode.children[0].children[0].children[0].style.transform = "";
+                        }
                     }
                 }
                 break;
             
-            //will be used when the current target has a parent node of 3
+            // will excute when the faq icon is clicked by a user. 
             case 3:
                 if(theTarget.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.tagName === "LI" ){
                     //adds the class
                     if(addOrRemove === 'open'){
                         theTarget.parentNode.parentNode.parentNode.classList.add(toggleClass); 
-                        theTarget.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
+                        if( theTarget.parentNode.parentNode.parentNode.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.parentNode.parentNode.parentNode.children[0].children[0].children[0].style.transform = "rotate(180deg)";
+                        }
+
                     }
                     else{
-                        theTarget.parentNode.parentNode.parentNode.classList.remove(toggleClass); 
-                        theTarget.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
-                    }
-                }
-                break;
-            //will be used when the current target has a parent node of 4
-            case 4: 
-                if(theTarget.parentNode.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.parentNode.tagName === "LI" ){
-                    //adds the class
-                    if(addOrRemove === 'open'){
-                        theTarget.parentNode.parentNode.parentNode.parentNode.classList.add(toggleClass); 
-                        theTarget.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
-                    }
-                    else{
-                        theTarget.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass);
-                        theTarget.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = ''; 
-                    }
-                }
-                break;
-            
-            //will be used when the current target has a parent node of 5
-            case 5:
-                if(theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.tagName === "li" ||  theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.tagName === "LI" ){
-                    //adds the class
-                    if(addOrRemove === 'open'){
-                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add(toggleClass); 
-                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = "rotate(180deg)";
-                    }else{
-                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove(toggleClass);
-                        theTarget.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('dlwfq-fq-icons')[0].childNodes[0].style.transform = '';
+                        theTarget.parentNode.parentNode.parentNode.classList.remove(toggleClass);     
+                        if( theTarget.parentNode.parentNode.parentNode.children[0].children[0].classList.contains('dlwfq-fq-icons') ){
+                            theTarget.parentNode.parentNode.parentNode.children[0].children[0].children[0].style.transform = "";
+                        }
                     }
                 }
             break;
@@ -198,6 +186,7 @@ var initDlwfqFaqSetup = (function(){
                 //making sure that the click is a valid click before adding anything into the state. 
                 if(doesEventHaveTarget.target){
 
+                    console.log(doesEventHaveTarget);
                     //adds the elements to the state array
                     addElementsState(doesEventHaveTarget.currentTargetIndex);
 
@@ -230,6 +219,10 @@ var initDlwfqFaqSetup = (function(){
                     //this only runs when i have only one element clicked, otherwise this will never run. 
                     else{
                         faqState.clickedFaqElement[0]['accordian-state'] = 'open';
+                        
+                        console.log(currentTarget);
+                        console.log(doesEventHaveTarget.currentparentNode);
+
                         toggleOurClass(currentTarget, doesEventHaveTarget.currentparentNode, faqState.clickedFaqElement[0]['accordian-state']);
                     }
                 }
