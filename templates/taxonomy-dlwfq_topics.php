@@ -62,7 +62,7 @@
                 else{
                     the_title();
                 ?>
-
+                
                 <span class="dlwfq-fq-icons">
                     <i class="fa fa-angle-down" aria-hidden="true" style="display: block; line-height: 48px;position: absolute;top: 0px;right: 1rem;"></i>
                 </span>
