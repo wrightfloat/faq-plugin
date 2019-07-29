@@ -125,7 +125,7 @@ var initDlwfqFaqSetup = (function(){
             break;
         }
     }
-        //todo add support here to make it easy for other devs too add there own faq id's as the main faq trigger. 
+        //todo: add support here to make it easy for other devs too add there own faq id's as the main faq trigger. 
         var clicked = function(){
 
             var faqTrigger = document.getElementById('basics');
@@ -185,8 +185,7 @@ var initDlwfqFaqSetup = (function(){
 
                 //making sure that the click is a valid click before adding anything into the state. 
                 if(doesEventHaveTarget.target){
-
-                    console.log(doesEventHaveTarget);
+                    
                     //adds the elements to the state array
                     addElementsState(doesEventHaveTarget.currentTargetIndex);
 
@@ -219,10 +218,6 @@ var initDlwfqFaqSetup = (function(){
                     //this only runs when i have only one element clicked, otherwise this will never run. 
                     else{
                         faqState.clickedFaqElement[0]['accordian-state'] = 'open';
-                        
-                        console.log(currentTarget);
-                        console.log(doesEventHaveTarget.currentparentNode);
-
                         toggleOurClass(currentTarget, doesEventHaveTarget.currentparentNode, faqState.clickedFaqElement[0]['accordian-state']);
                     }
                 }
