@@ -67,9 +67,10 @@ function dlwfq_get_archive_title($archiveType) {
   else{
     return; 
   }
-
 } 
 add_filter( 'dlwfq_set_archive_title', 'dlwfq_get_archive_title', 10, 1);
+
+//to display the archive title
 function dlwfq_echo_archive_title($archiveType){
   echo apply_filters('dlwfq_set_archive_title', $archiveType);
 }
