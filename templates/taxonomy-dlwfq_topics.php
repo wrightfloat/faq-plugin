@@ -8,6 +8,7 @@
     ?>
     
     <?php get_header(); ?>
+
     <div id="faqs-container" class="faq-plugin-template">
 
     <section>
@@ -20,21 +21,21 @@
 
     <?php
 
-        $args = array(
-            'post_type'       => 'dlw_wp_faq',
-            'post_status'     => 'publish',
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'dlwfq_topics',
-                    'field'    => 'slug',
-                    'terms'    => get_query_var( 'faq-topics' ), //grabs the current term for our custom taxonomy.
-                ),
+    $args = array(
+        'post_type'       => 'dlw_wp_faq',
+        'post_status'     => 'publish',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'dlwfq_topics',
+                'field'    => 'slug',
+                'terms'    => get_query_var( 'faq-topics' ), //grabs the current term for our custom taxonomy.
             ),
-            'paged'           => get_query_var( 'paged' ),
-            'posts_per_page'  => esc_attr( dlwfq_get_the_archive_post_count() ), //this has to sync with the default posts per page 
-        );
-        // the query
-        $the_query = new WP_Query( $args ); 
+        ),
+        'paged'           => get_query_var( 'paged' ),
+        'posts_per_page'  => esc_attr( dlwfq_get_the_archive_post_count() ), //this has to sync with the default posts per page 
+    );
+    // the query
+    $the_query = new WP_Query( $args ); 
     ?>
 
     <?php if ( $the_query->have_posts() ) : ?>
@@ -64,7 +65,7 @@
                 ?>
                 
                 <span class="dlwfq-fq-icons">
-                    <img width="24px" height="24px" style="display: block;" src="<?php echo get_site_url() .  '/wp-content/plugins/faqizer/assets/frontend/img/down-arrow-solid.png'; ?> ">
+                    <img width="48px" height="48px" style="display: block;" src="<?php echo get_site_url() .  '/wp-content/plugins/faqizer/assets/frontend/img/down-arrow-solid.png'; ?> ">
                 </span>
 
                 <?php } ?>

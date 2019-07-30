@@ -55,7 +55,7 @@
                         the_title();
                     ?>
                         <span class="dlwfq-fq-icons">
-                            <img width="24px" height="24px" style="display: block;" src="<?php echo get_site_url() .  '/wp-content/plugins/faqizer/assets/frontend/img/down-arrow-solid.png'; ?> ">
+                            <img width="48px" height="48px" style="display: block;" src="<?php echo get_site_url() .  '/wp-content/plugins/faqizer/assets/frontend/img/down-arrow-solid.png'; ?> ">
                         </span>
                         
                     <?php } ?>
