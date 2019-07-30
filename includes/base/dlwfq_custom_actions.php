@@ -94,7 +94,6 @@ function dlwfq_get_the_slug($return_as_array = false){
   }
 }
 
-
 // filter to get the option from the db that will display the accordian on the archive page.  
 function dlwfq_display_accordian($accordianvalues){
   $accordianvalues = get_option('dlwfq-archive-accordion');
@@ -150,21 +149,30 @@ function dlwfq_get_the_archive_post_count(){
 
   return $post_count; 
 }
-
-// Setup up the query for wp too use for for our custom post type. 
-// If this is not setup the custom pagination will be messed up. 
+ 
+/**
+ * Setup up the query for wp too use for our custom post type. If this is not setup the custom pagination will not work as intended.
+ *
+ * @param [type] $query
+ * @return void
+ */
 function dlwfq_pre_get_posts( $query ) {
-
   if ( !is_admin() && $query->is_post_type_archive('dlw_wp_faq') ) {
       // Modifing our posts per page with the value added too the database. 
       $query->set( 'posts_per_page', dlwfq_get_the_archive_post_count() ); 
   }
-
 }
 
 add_action( 'pre_get_posts', 'dlwfq_pre_get_posts' );
 
-// filter for setting up the faq icons for the faqs.
+/**
+ * filter for setting up the faq icons for the faqs.
+ *
+ * @param array $setup_icon_atts takes an array of values like the following ( 'width' => '48', 'height' => '48', 'style' => 'display: block;'); 
+ * @param string $setup_icon_src the src of the icon that will be used for the faqs. 
+ * @return void
+ */
+
 function dlw_setup_faq_icon($setup_icon_atts, $setup_icon_src){
 
     if($setup_icon_atts === false){

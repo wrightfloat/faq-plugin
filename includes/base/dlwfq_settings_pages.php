@@ -23,9 +23,7 @@ function dlwfq_create_menu() {
 
 }
 
-
 function dlwfq_plugin_settings() {
-
     
     //used to create a check box field and have access too the checked function. 
     add_settings_field("dlwfq-archive-accordion", "Enable accordion on Faq page", "dlwfq_plugin_settings_page", "dlwfq-archive-options-group", "default"); 
@@ -54,8 +52,6 @@ function dlwfq_plugin_settings() {
         ) 
     );
 
-
-
     //A option to setup the title on the archive faq page. 
     register_setting( 'dlwfq-archive-options-group', 'dlwfq-archive-title' ,
         array(
@@ -79,7 +75,6 @@ function dlwfq_plugin_settings() {
     );
 
     add_action( 'current_screen', 'dlwfq_check_settings_page' );
-
     
     /**
      * Making sure that the following code is only exicuted on the faqizer plugin settings page. 
@@ -111,9 +106,7 @@ function dlwfq_plugin_settings() {
         else{
             return; 
         }
-        
     }
-
 }
 
 /**

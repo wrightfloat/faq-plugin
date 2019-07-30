@@ -17,8 +17,8 @@ The main Goal of FAQIZER is to help everyone that uses wordpress for there websi
 ## Frequently Asked Questions
 > What PHP version is required for this plugin? <br />
 > 1. (a) This plugin requires PHP version 5.3 or higher.<br />
-> 1. (b) If you're still at PHP 5.2, it's time to update. [Read here why and how](http://www.wpupdatephp.com/update/)<br />
-> 2. This plugin requires a minimum of PHP 5.3. If you happen to install the plugin, and do not have the correct version. Our plugin will auto uninstall if you do not have the correct php version or correct version of wordpress. <br />
+> 1. (b) If you're still using PHP 5.2 for some reason, it's time to update. [Why and how to update your PHP version](http://www.wpupdatephp.com/update/)<br />
+> 2. This plugin requires a minimum of PHP 5.3. If you happen to install the plugin, and do not have the correct version you will be prompt with a notification that your site does not have the minimum requirements.
 
 [Please visit our Knowledge Base for more documentation](https://www.wrightfloat.com/faqs)
 
