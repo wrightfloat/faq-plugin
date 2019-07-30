@@ -105,5 +105,5 @@
     display: block;
     line-height: 48px;
     float: right;
-    margin-top: 1.5rem;
+    min-height: 48px;
   }
