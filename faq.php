@@ -14,10 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if(! defined( 'DLWFQ_PLUGIN_DIR_URL' ) ){
-    define( 'DLWFQ_PLUGIN_DIR_URL', plugins_url(__FILE__) );
-}
-
 if(! defined( 'DLWFQ_PLUGIN_DIR_PATH' ) ){
     define( 'DLWFQ_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__) );
 }
