@@ -163,3 +163,24 @@ function dlwfq_pre_get_posts( $query ) {
 }
 
 add_action( 'pre_get_posts', 'dlwfq_pre_get_posts' );
+
+// filter for setting up the faq icons for the faqs.
+function dlw_setup_faq_icon($setup_icon_atts, $setup_icon_src){
+
+    if($setup_icon_atts === false){
+      $setup_icon_atts = array( 
+        'width' => '48', 
+        'height' => '48', 
+        'style' => 'display: block;',
+      );
+    }
+
+    if($setup_icon_src === false){
+      $setup_icon_src =  plugins_url() . '/faqizer/assets/frontend/img/down-arrow-solid.png';
+    }
+
+    $dlw_icon_html = '<span class="dlwfq-fq-icons">' . '<img width="' . $setup_icon_atts['width'] . '" height="' . $setup_icon_atts['height'] . '" style="' . $setup_icon_atts['style'] . '" src="' . $setup_icon_src . '"></span>';
+    return $dlw_icon_html; 
+}
+
+add_filter('dlw_setup_faq_icon', 'dlw_setup_faq_icon', 2, 10);

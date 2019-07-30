@@ -61,14 +61,13 @@
                 <?php }
                     //When the user has the accordian enabled no link will appear in the title area of the faq.
                 else{
-                    the_title();
-                ?>
-                
-                <span class="dlwfq-fq-icons">
-                    <img width="48px" height="48px" style="display: block;" src="<?php echo get_site_url() .  '/wp-content/plugins/faqizer/assets/frontend/img/down-arrow-solid.png'; ?> ">
-                </span>
 
-                <?php } ?>
+                    the_title();
+
+                    //outputting the image icon for the faq
+                    echo apply_filters( 'dlw_setup_faq_icon', false, false); 
+                    
+                    } ?>
             </span>
 
             <div class="dlwfq-fq-content">
