@@ -154,8 +154,11 @@ class dlwfq_setup{
      */
     
     public function setup_faq_topics_archive_template($archive_template) {
+
         
-        if( is_post_type_archive( $this->custom_post_type ) ){
+        // name for the custom taxonmy that you setup.
+        if( is_tax( 'dlwfq_topics' ) ){
+            
             $file_name = 'taxonomy-dlwfq_topics.php';
             $archive_template = dlwfq_get_faq_archive_template($file_name); 
 
@@ -195,12 +198,14 @@ class dlwfq_setup{
                     }
                 }
                 add_action('wp_enqueue_scripts', 'dlwfq_setup_custom_archive_style_sheet');
+
             }
 
             //run this when the user has a template that was added too it's theme.
             else if($archive_template['template_loaded_via_theme'] === false && $archive_template['template_loaded_via_plugin_true'] === true ){
                 
                 $archive_template = $archive_template['file']; 
+
                 // sets up the required stylesheet and js files.  
                 function dlwfq_setup_custom_archive_style_sheet(){ 
 
@@ -243,5 +248,7 @@ class dlwfq_setup{
         else{
             return; 
         }
+
     }
+
 }
