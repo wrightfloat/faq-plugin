@@ -64,7 +64,7 @@
                 ?>
                 
                 <span class="dlwfq-fq-icons">
-                    <i class="fa fa-angle-down" aria-hidden="true" style="display: block; line-height: 48px;position: absolute;top: 0px;right: 1rem;"></i>
+                    <img width="24px" height="24px" style="display: block;" src="<?php echo get_site_url() .  '/wp-content/plugins/faqizer/assets/frontend/img/down-arrow-solid.png'; ?> ">
                 </span>
 
                 <?php } ?>

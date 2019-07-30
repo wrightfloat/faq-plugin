@@ -100,3 +100,10 @@
   span.dlwfq-fq-wrap{
     color: #484848;
   }
+
+  .dlwfq-fq-icons{
+    display: block;
+    line-height: 48px;
+    float: right;
+    margin-top: 1.5rem;
+  }
