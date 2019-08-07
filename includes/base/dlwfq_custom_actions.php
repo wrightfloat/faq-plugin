@@ -77,12 +77,10 @@ function dlwfq_echo_archive_title($archiveType){
 
 // returns the faqs slug for the Faq Posttype.  
 function dlwfq_faq_slug($faqslughasvalues){
-
   $faqslughasvalues = get_option('dlwfq-archive-options-slug');
   if($faqslughasvalues !== false){
     return array('slug' => strtolower($faqslughasvalues) );
   }
-  
 }  
 add_filter( 'dlwfq_get_faq_slug_filter', 'dlwfq_faq_slug', 10);
 
@@ -97,20 +95,16 @@ function dlwfq_get_the_slug($return_as_array = false){
 // filter to get the option from the db that will display the accordian on the archive page.  
 function dlwfq_display_accordian($accordianvalues){
   $accordianvalues = get_option('dlwfq-archive-accordion');
-
   //will get the option from the database.
-  if( $accordianvalues !== false){
-      
+  if( $accordianvalues !== false){ 
     // displays accordian
     if($accordianvalues == 1){
       $accordianvalues = true; 
     }
-
     //disabled accordian
     else if($accordianvalues == 0){
       $accordianvalues = false; 
     }
-
     return $accordianvalues;
   }
   else{
@@ -128,9 +122,7 @@ function dlwfq_get_accordian_settings(){
 
 // returns the amount of posts to show on the archive pages, grabs the value from the wp-options with the key of 'dlwfq-total-posts-on-archive-page'.  
 function dlwfq_get_faq_loop_count($faqslughasvalues){
-
   $faqslughasvalues = get_option('dlwfq-total-posts-on-archive-page');
-
   // returns the total amount of posts to show when set on the settings page. 
   if($faqslughasvalues !== false){
     return absint($faqslughasvalues);

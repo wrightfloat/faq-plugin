@@ -5,7 +5,7 @@
 * Description: A plugin to add Frequently Asked Questions to your website. The Plugin is in the early stages, an will have new features added.  
 * Author: Daniel Wright
 * Author URI: http://wrightfloat.com
-* Version: 1.0
+* Version: 1.1
 * Text Domain: dlwfq_faqizer
 * Domain Path: /languages
 */
