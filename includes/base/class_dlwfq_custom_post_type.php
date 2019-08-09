@@ -2,7 +2,7 @@
 /**
  * Faqizer setup custom posttype setup class
  * @package Faqizer
- * @since   0.1.0
+ * @since   0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

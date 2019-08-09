@@ -3,7 +3,7 @@
  * Faqizer input sanitization class
  *
  * @package Faqizer
- * @since   0.1
+ * @since   0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

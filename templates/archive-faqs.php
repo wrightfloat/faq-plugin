@@ -1,7 +1,8 @@
     <?php
-        /**
-        * The Template for displaying our faqs on the Faqs Archive page. 
-        */
+    /**
+    * The default template used to display the faqs. 
+    * add this template too your theme and it will overwrite this one.  
+    */
         if ( ! defined( 'ABSPATH' ) ) {
             exit;
         }

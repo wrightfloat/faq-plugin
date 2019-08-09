@@ -1,10 +1,13 @@
     <?php 
-        /**
-        * The Template for displaying our faq topics. 
-        */
-        if ( ! defined( 'ABSPATH' ) ) {
-            exit;
-        }
+    /**
+    * The default template used to display the faqs. 
+    * add this template too your theme and it will overwrite this one. 
+    */
+    
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+    
     ?>
     
     <?php get_header(); ?>

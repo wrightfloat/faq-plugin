@@ -4,7 +4,7 @@
  * this sets up custom actions 
  *
  * @package Faqizer
- * @since   0.1.0
+ * @since   0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

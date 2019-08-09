@@ -2,10 +2,10 @@
 /*
 * Plugin Name: Faqizer
 * Plugin URI: http://wrightfloat.com
-* Description: A plugin to add Frequently Asked Questions to your website. The Plugin is in the early stages, an will have new features added.  
+* Description: Add Frequently Asked Questions to your website. No more having to add freequently asked questions inside of shortcodes.   
 * Author: Daniel Wright
 * Author URI: http://wrightfloat.com
-* Version: 1.1
+* Version: 0.2
 * Text Domain: dlwfq_faqizer
 * Domain Path: /languages
 */
@@ -199,6 +199,71 @@ function dlwfq_plugin_setup(){
         );
     }
     add_action( 'init', 'dlwfq_create_topics_tax' );
+
 }
 
 add_action('plugins_loaded', 'dlwfq_plugin_setup');
+
+
+function dlwfq_plugin_deactivation() {
+
+    /**
+     * removing plugin data from the database on deactivation.
+     *
+     * @return void
+     */ 
+    
+    if( get_option('dlwfq-archive-accordion') === false){
+        delete_option('dlwfq-plugin-v'); 
+    }
+
+    //adds a default faq page title
+    if( get_option('dlwfq-archive-title') === false){
+        delete_option('dlwfq-plugin-v'); 
+    }
+
+    //adds number of posts/faqs to display on the faq page 
+    if( get_option('dlwfq-total-posts-on-archive-page') === false){
+        delete_option('dlwfq-plugin-v'); 
+    }
+
+    //setting the slug to be used for the faq page's
+    if( get_option('dlwfq-archive-options-slug') === false){
+        delete_option('dlwfq-plugin-v');  
+    }
+
+    //setting plugin version
+    if( get_option('dlwfq-plugin-v') === false ){ 
+        delete_option('dlwfq-plugin-v'); 
+    }
+
+    //registering our post type in the activation hook, so the user has a faq page setup right away. 
+    //always make sure this is exaclty the same as what's in the plugin post type class. 
+    register_post_type( 'dlw_wp_faq', 
+        array(
+            'labels' => array('name'=> 'faqs', 'singular_name' => 'faq'), 
+            'description' => 'Enter a FAQ',
+            'public' => true,
+            'exclude_from_search' => false, //Whether to exclude posts with this post type from front end search results.
+            'publicly_queryable' => true, //Whether queries can be performed on the front end as part of parse_request.
+            'show_ui' => true, //Whether to generate a default UI for managing this post type in the admin
+            'show_in_nav_menus' => true, //Whether to generate a default UI for managing this post type in the admin
+            'show_in_menu' => true, //Where to show the post type in the admin menu. show_ui must be true.
+            'show_in_admin_bar' => true, //Whether to make this post type available in the WordPress admin bar.
+            'menu_position' => 102, //The position in the menu order the post type should appear. show_in_menu must be true.
+            'menu_icon' => 'dashicons-flag', 
+            'hierarchical' => false, //Whether the post type is hierarchical (e.g. page). Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page.
+            'supports' => array('title', 'editor', 'author'),   //title, editor, author, thumbnail, excerpt, trackbacks, custom-fields, comments, revisions, page-attributes, post-formats
+            'has_archive' => true, //Enables post type archives. Will use $post_type as archive slug by default.
+            'rewrite' => array('slug' => faqs, 'with_front' => false ),// Triggers the handling of rewrites for this post type. To prevent rewrites, set to false.
+            'can_export' => true,  //allows users to export a csv file of this post type
+            'delete_with_user' => false, //Whether to delete posts of this type when deleting a user. If true, posts of this type belonging to the user will be moved to trash when then user is deleted. If false, posts of this type belonging to the user will not be trashed or deleted. If not set (the default), posts are trashed if post_type_supports('author'). Otherwise posts are not trashed or deleted.
+            'show_in_rest' => false, //Whether to expose this post type in the REST API. 
+        )
+    );
+
+    //flushing the rewrite rules to remove uneeded settings.
+    flush_rewrite_rules();
+}
+
+register_deactivation_hook($file, 'dlwfq_plugin_deactivation');

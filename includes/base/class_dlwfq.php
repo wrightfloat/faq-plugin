@@ -3,7 +3,7 @@
  * Faqizer setup class
  *
  * @package Faqizer
- * @since   0.1.0
+ * @since   0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class dlwfq_setup{
 
-    public $plugin_version = 1.0;
+    public $plugin_version = 0.2;
     public $plugin_prefix = 'dlw_frequently_asked_questions'; //the prefix of the plugin
     public $custom_post_type = 'dlw_wp_faq'; //the custom post type 
     public $custom_post_type_slug;

@@ -4,7 +4,7 @@
  * this sets up our settings page.
  *
  * @package Faqizer
- * @since   0.1.1
+ * @since   0.2
  * Text Domain: dlwfq_faqizer
  */
 
