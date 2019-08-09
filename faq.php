@@ -2,7 +2,7 @@
 /*
 * Plugin Name: Faqizer
 * Plugin URI: http://wrightfloat.com
-* Description: Add Frequently Asked Questions to your website. No more having to add freequently asked questions inside of shortcodes.   
+* Description: Add Frequently Asked Questions to your website, No more depending on muiltiple short codes to display each faq on your site.   
 * Author: Daniel Wright
 * Author URI: http://wrightfloat.com
 * Version: 0.2
@@ -204,35 +204,24 @@ function dlwfq_plugin_setup(){
 
 add_action('plugins_loaded', 'dlwfq_plugin_setup');
 
-
+/**
+ * removing plugin data from the database on deactivation.
+ *
+ * @return void
+ */ 
 function dlwfq_plugin_deactivation() {
-
-    /**
-     * removing plugin data from the database on deactivation.
-     *
-     * @return void
-     */ 
-    
     if( get_option('dlwfq-archive-accordion') !== false){
         delete_option('dlwfq-archive-accordion'); 
     }
-
-    //adds a default faq page title
     if( get_option('dlwfq-archive-title') !== false){
         delete_option('dlwfq-archive-title'); 
-    }
-
-    //adds number of posts/faqs to display on the faq page 
+    } 
     if( get_option('dlwfq-total-posts-on-archive-page') !== false){
         delete_option('dlwfq-total-posts-on-archive-page'); 
     }
-
-    //setting the slug to be used for the faq page's
     if( get_option('dlwfq-archive-options-slug') !== false){
         delete_option('dlwfq-archive-options-slug');  
     }
-
-    //setting plugin version
     if( get_option('dlwfq-plugin-v') !== false ){ 
         delete_option('dlwfq-plugin-v'); 
     }
@@ -266,4 +255,4 @@ function dlwfq_plugin_deactivation() {
     flush_rewrite_rules();
 }
 
-register_deactivation_hook($file, 'dlwfq_plugin_deactivation');
+register_deactivation_hook(__FILE__, 'dlwfq_plugin_deactivation');
