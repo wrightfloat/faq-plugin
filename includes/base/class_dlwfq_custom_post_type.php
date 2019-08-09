@@ -122,6 +122,12 @@ class dlwfq_custom_post_type {
                 'show_in_rest' => false, //Whether to expose this post type in the REST API.
             )
         );
+
+        //checking to see if we have a transient set so we reset the plugins permaklinks when setting up the custom post type for the first time. 
+        if( get_transient( 'dlwfq_faqizer_activated_reset_permalinks' ) ){
+            delete_transient( 'dlwfq_faqizer_activated_reset_permalinks' );
+            flush_rewrite_rules();
+        }
     }
 
     /**
