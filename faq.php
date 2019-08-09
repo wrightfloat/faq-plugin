@@ -213,27 +213,27 @@ function dlwfq_plugin_deactivation() {
      * @return void
      */ 
     
-    if( get_option('dlwfq-archive-accordion') === false){
-        delete_option('dlwfq-plugin-v'); 
+    if( get_option('dlwfq-archive-accordion') !== false){
+        delete_option('dlwfq-archive-accordion'); 
     }
 
     //adds a default faq page title
-    if( get_option('dlwfq-archive-title') === false){
-        delete_option('dlwfq-plugin-v'); 
+    if( get_option('dlwfq-archive-title') !== false){
+        delete_option('dlwfq-archive-title'); 
     }
 
     //adds number of posts/faqs to display on the faq page 
-    if( get_option('dlwfq-total-posts-on-archive-page') === false){
-        delete_option('dlwfq-plugin-v'); 
+    if( get_option('dlwfq-total-posts-on-archive-page') !== false){
+        delete_option('dlwfq-total-posts-on-archive-page'); 
     }
 
     //setting the slug to be used for the faq page's
-    if( get_option('dlwfq-archive-options-slug') === false){
-        delete_option('dlwfq-plugin-v');  
+    if( get_option('dlwfq-archive-options-slug') !== false){
+        delete_option('dlwfq-archive-options-slug');  
     }
 
     //setting plugin version
-    if( get_option('dlwfq-plugin-v') === false ){ 
+    if( get_option('dlwfq-plugin-v') !== false ){ 
         delete_option('dlwfq-plugin-v'); 
     }
 
