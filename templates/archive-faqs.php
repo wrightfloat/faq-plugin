@@ -11,6 +11,7 @@
     <?php get_header(); ?>
         
     <div id="faqs-container" class="faq-plugin-template">
+
         <section>
             <header class="faq-header">
                 <h1 class="faq-header-title page-title">
@@ -37,33 +38,39 @@
             <?php
                 $counter = -1; 
                 while ( $the_query->have_posts() ) : $the_query->the_post();  $counter++; 
-            ?> 
+                
+                ?> 
 
-            <li class="dlwfq-fq-target" data-content-status="closed" data-index="<?php echo $counter; ?>">
-                <span class="dlwfq-fq-wrap">
-                    
-                    <?php 
-                        //if the user does not have accordian enabled a link will be clickable, which will take the user to the single faq page. 
-                        if( dlwfq_get_accordian_settings() !== true){ 
-                    ?>
-                    <a class="dlwfq-fq-target" href="<?php the_permalink(); ?>">
-                        <?php the_title(); ?>
-                    </a>
+                <li class="dlwfq-fq-target" data-content-status="closed" data-index="<?php echo $counter; ?>">
+                    <span class="dlwfq-fq-wrap">
+                        
+                        <?php 
+                            //if the user does not have accordian enabled a link will be clickable, which will take the user to the single faq page. 
+                            if( dlwfq_get_accordian_settings() !== true){ 
 
-                    <?php }
-                        //When the user has the accordian enabled no link will appear in the title area of the faq.
-                    else{
-                        the_title();
-                    
-                        //outputting the image icon for the faq
-                        echo apply_filters( 'dlw_setup_faq_icon', false, false); 
-                    } ?>
-                </span>
+                        ?>
+                                <a class="dlwfq-fq-target" href="<?php the_permalink(); ?>">
+                                    <?php the_title(); ?>
+                                </a>
 
-                <div class="dlwfq-fq-content">
-                    <p><?php esc_html( the_content() ) ;?></p>
-                </div> <!-- dlwfq-fq-content-->
-            </li> 
+                        <?php }
+                            
+                            //When the user has the accordian enabled no link will appear in the title area of the faq.
+                            else if(dlwfq_get_accordian_settings() === true){
+                                the_title();
+                                //outputting the image icon for the faq
+                                echo apply_filters( 'dlw_setup_faq_icon', false, false); 
+                            }
+                        ?>
+                    </span>
+
+                    <div class="dlwfq-fq-content">
+
+                        <p><?php esc_html( the_content() ) ;?></p>
+
+                    </div> <!-- dlwfq-fq-content-->
+                </li> 
+
             <?php endwhile; ?>
             <!-- end of the loop -->
             </ul>
