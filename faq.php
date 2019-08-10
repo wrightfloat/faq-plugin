@@ -84,6 +84,10 @@ function dlwfq_plugin_activation() {
     if( get_option('dlwfq-plugin-v') === false ){ 
         update_option('dlwfq-plugin-v', '0.2' ); 
     }
+    if( get_option('dlwfq-archive-accordion') === false){
+        update_option('dlwfq-archive-accordion', 1); 
+    }
+
     set_transient( 'dlwfq_faqizer_activated', 1 );
     set_transient( 'dlwfq_faqizer_activated_reset_permalinks', 1 );
 }
