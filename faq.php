@@ -5,7 +5,7 @@
 * Description: Add Frequently Asked Questions to your website, No more depending on muiltiple short codes to display each faq on your site.   
 * Author: Daniel Wright
 * Author URI: http://wrightfloat.com
-* Version: 0.2
+* Version: 0.2.1
 * Text Domain: dlwfq_faqizer
 * Domain Path: /languages
 */
@@ -68,6 +68,7 @@ function dlwfq_plugin_activation() {
             . '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'dlwfq_faqizer' ) . '</a>'
         );
     }
+
     if( get_option('dlwfq-archive-title') === false){
         update_option('dlwfq-archive-title',  __('Frequently Asked Questions' , 'dlwfq_faqizer')); 
     }
@@ -78,7 +79,7 @@ function dlwfq_plugin_activation() {
         update_option('dlwfq-archive-options-slug', 'faqs'); 
     }
     if( get_option('dlwfq-plugin-v') === false ){ 
-        update_option('dlwfq-plugin-v', '0.2' ); 
+        update_option('dlwfq-plugin-v', '0.2.1' ); 
     }
     if( get_option('dlwfq-archive-accordion') === false){
         update_option('dlwfq-archive-accordion', 1); 
