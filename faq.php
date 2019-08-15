@@ -24,25 +24,21 @@ if(! defined( 'DLWFQ_PLUGIN_NAME' ) ){
 }
 
 if (! defined( 'DLWFQ_PLUGIN_DIR' ) ) {
-
     //a constant to be used to get the directory with my plugin name 
     define( 'DLWFQ_PLUGIN_DIR',  WP_PLUGIN_DIR . '/' . DLWFQ_PLUGIN_NAME );
 }
 
 if (! defined( 'DLWFQ_FRONTEND_CSS_ASSETS' ) ){
-
     //a constant to be used for reffering too my frontend folder location for css assets.
     define( 'DLWFQ_FRONTEND_CSS_ASSETS', '/assets/frontend/css/' );
 }
 
 if (! defined( 'DLWFQ_FRONTEND_JS_ASSETS' ) ){
-
     //a constant to be used for reffering too my frontend folder location for js assets.
     define( 'DLWFQ_FRONTEND_JS_ASSETS',  '/assets/frontend/js/' );
 }
 
 if (! defined( 'DLWFQ_BACKEND_CSS_ASSETS' ) ){
-
     //a constant to be used for reffering too my backend folder location for css assets.
     define( 'DLWFQ_BACKEND_CSS_ASSETS',  '/assets/backend/css/' ); 
 }
