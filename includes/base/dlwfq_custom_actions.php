@@ -149,9 +149,18 @@ function dlwfq_get_the_archive_post_count(){
  * @return void
  */
 function dlwfq_pre_get_posts( $query ) {
-  if ( !is_admin() && $query->is_post_type_archive('dlw_wp_faq') ) {
-      // Modifing our posts per page with the value added too the database. 
-      $query->set( 'posts_per_page', dlwfq_get_the_archive_post_count() ); 
+
+  //checking to see if i am on a 
+  if ( !is_admin() && $query->is_post_type_archive('dlw_wp_faq') ||  !is_admin() && is_tax('dlwfq_topics')  ) { 
+    
+    global $post;
+    
+    //check if we are on a template archive page and setting the posts per page there, so we display pagination and it works without problems occurring. 
+    if( is_null($post) ){
+        // Modifing our posts per page with the value from the database. 
+        $query->set( 'posts_per_page', dlwfq_get_the_archive_post_count() );  
+    }
+
   }
 }
 
