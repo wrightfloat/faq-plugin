@@ -57,6 +57,7 @@ function dlwfq_plugin_activation() {
             . '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'dlwfq_faqizer' ) . '</a>'
         );
     }
+    
     if ( version_compare( $wp_version, $wp, '<' ) ) {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die(

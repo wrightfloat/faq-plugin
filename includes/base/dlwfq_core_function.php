@@ -62,3 +62,50 @@ function dlwfq_the_posts_navigation() {
 		
 	);
 }
+
+//shortcode for displaying our faq topics to users
+function dlwfq_get_faq_topics_shortcode( $atts ) {
+	
+	$atts = shortcode_atts( 
+		array(
+			'category_to_return' => 'pixie',
+			'number_to_return' => '2',
+		), 
+		$atts,
+		'dlwfq_get_faq_topics' 
+	);
+	
+	$args = array(
+        'post_type'       => 'dlw_wp_faq',
+        'post_status'     => 'publish',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'dlwfq_topics',
+                'field'    => 'slug',
+                'terms'    => $atts['category_to_return'], //grabs the current term for our custom taxonomy.
+            ),
+        ),
+		'posts_per_page'  => esc_attr( $atts['number_to_return'] ), //this has to sync with the default posts per page 
+		
+	);
+		
+			// the query
+			$the_query = new WP_Query( $args ); 
+			
+			ob_start();
+			while ( $the_query->have_posts() ) : $the_query->the_post();
+				?>
+					<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li> 
+				<?php 
+			endwhile;
+
+			// Save output and stop output buffering
+			wp_reset_postdata();
+			$output = ob_get_contents();
+			ob_clean();
+
+			return $output;
+			//var_dump($the_query);
+	}
+
+add_shortcode( 'dlwfq_get_faq_topics', 'dlwfq_get_faq_topics_shortcode' );
